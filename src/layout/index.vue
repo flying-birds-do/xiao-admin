@@ -12,7 +12,8 @@
       <div class="content-warp">
       <Sidebar class="sidebar-container" />
       <div class="main-container">
-       <RouterView></RouterView>
+       <RouterView v-if="!$route.meta.link"></RouterView>
+      <!-- <AppMain></AppMain> -->
       </div>
       </div>
 
@@ -57,6 +58,7 @@ const fixedHeader = ref({})
   display: flex;
   .main-container {
     flex: 1;
+    padding: 20px;
   }
 }
 </style>
