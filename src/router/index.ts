@@ -73,7 +73,7 @@ const router = createRouter({
 				// 使用手册
 				{
 					path: '/aboutFile/vue',
-					component: () => import('../views/analysis/index.vue'),
+					component: () => import('../views/vue/index.vue'),
 					name: 'vue',
 					meta: {
 						title: 'vue',
@@ -82,10 +82,37 @@ const router = createRouter({
 				},
 				{
 					path: '/aboutFile/vueRouter',
-					component: () => import('../views/works/index.vue'),
+					component: () => import('../views/vueRouter/index.vue'),
 					name: 'vueRouter',
 					meta: {
 						title: 'vueRouter',
+						hidden: true,
+					},
+				},
+				{
+					path: '/aboutFile/typeScript',
+					component: () => import('../views/typeScript/index.vue'),
+					name: 'typeScript',
+					meta: {
+						title: 'typeScript',
+						hidden: true,
+					},
+				},
+				{
+					path: '/aboutFile/vite',
+					component: () => import('../views/vite/index.vue'),
+					name: 'vite',
+					meta: {
+						title: 'vite',
+						hidden: true,
+					},
+				},
+				{
+					path: '/aboutFile/elementPlus',
+					component: () => import('../views/elementPlus/index.vue'),
+					name: 'elementPlus',
+					meta: {
+						title: 'elementPlus',
 						hidden: true,
 					},
 				},
