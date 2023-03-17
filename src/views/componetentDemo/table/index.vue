@@ -1,187 +1,353 @@
 <template>
   <section class="table-warp">
-    <tableTemplate :tableData="state.tableData"></tableTemplate>
+    <el-row class="top-button-warp">
+      <el-button type="primary" @click="newAdd">新建</el-button>
+    </el-row>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column label="商品id" prop="id" />
+      <el-table-column label="仓库名称" prop="storeName" />
+      <el-table-column label="商品状态" prop="status">
+        <template #default="scope">
+          {{ scope.row?.status === '1' ? '出库中' : " 成功" }}
+        </template>
+      </el-table-column>
+      <el-table-column label="商品源" prop="origin" />
+      <el-table-column label="日期">
+        <template #default="scope" v-model.n>
+          <div style="display: flex; align-items: center">
+            <el-icon>
+              <timer />
+            </el-icon>
+            <span style="margin-left: 10px">{{ scope.row?.date }}</span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template #default="scope">
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+          <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
+      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm"
+         status-icon>
+        <el-form-item label="商品id" prop="name">
+          <el-input v-model.number="ruleForm.id"  placeholder="请输入商品id"/>
+        </el-form-item>
+        <el-form-item label="仓库名称" prop="storeName">
+          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称"/>
+        </el-form-item>
+        <el-form-item label="商品状态" prop="status">
+          <el-select v-model="ruleForm.status" placeholder="请选择商品状态">
+            <el-option label="出库中" value="1" />
+            <el-option label="成功" value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="日期" required prop="date1">
+          <el-date-picker v-model="ruleForm.date" type="date" label="Pick a date" placeholder="请选择日期"
+            style="width: 100%" />
+        </el-form-item>
+        <el-form-item label="商品源" prop="desc" >
+          <el-input v-model="ruleForm.origin" type="textarea"  placeholder="请输入商品源"/>
+        </el-form-item>
+      </el-form>
+    </xyDialog>
   </section>
 </template>
 <script lang="ts" setup>
-import { defineComponent, reactive } from 'vue';
-import tableTemplate from '@/components/tableTem/index.vue'
+import xyDialog from '@/components/xDolog/index.vue'
+import { ref, reactive } from 'vue'
+import { Timer } from '@element-plus/icons-vue'
+import { tr } from 'element-plus/es/locale';
+import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
 
-    const state = reactive({
-      multipleSelection: [],
-      // 是否需要复选框
-      isSelection: true,
-      // 是否显示操作列
-      isNeedOperate: true,
-      // 需要做合并单元格的列
-      concatColumList: [2, 4],
-      // 是否需要合计
-      isShowSummary: false,
-      // 列表数据
-      tableData: [
-        {
-          id: 1,
-          storeId: 1,
-          date: '2016-05-03',
-          storeName: '王小虎',
-          status: 1,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 12
-        },
-        {
-          id: 1,
-          storeId: 2,
-          date: '2016-05-02',
-          storeName: '王小虎',
-          status: 2,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 13
-        },
-        {
-          id: 2,
-          storeId: 3,
-          date: '2016-05-04',
-          storeName: '王小虎',
-          status: 3,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 2
-        },
-        {
-          id: 2,
-          storeId: 4,
-          date: '2016-05-01',
-          storeName: '王小虎',
-          status: 4,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 5
-        },
-        {
-          id: 3,
-          storeId: 5,
-          date: '2016-05-08',
-          storeName: '王小虎',
-          status: 5,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 6,
-          date: '2016-05-06',
-          storeName: '王小虎',
-          status: 6,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: 7,
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        }
-      ],
-      needIconList: [{
-        colmn: '3',
-        icon: 'icon-a-nav_inventoryquery'
-      }],
-      // 是否需要固定操作列
-      isFixed: true,
-      // 需要自己根据页面情况做自定义
-      // @params {1} type 代表类型 有5种类型  search 是表头带搜索的 、normal 是普通表头
-      // screen 是筛选的表头 筛选的需要传list input 是列表需要渲染输入框的类型 sort 表示表头排序
-      // @params title 表头名称 props 列表渲染对应的接口字段 formatter 需要前端进行转义的格式 不需要可不写 width 特殊需要定义的宽度，可不传
-      //
-      //
+const dialogVisible = ref(false);
+const row = reactive({})
+const title = ref('编辑')
+interface User {
+  id: number;
+  storeId: number;
+  storeName: string;
+  status: number;
+  origin: string;
+  phone: string;
+  concat: string;
+  date: string;
+  createTime: string;
+  storeCount: number;
 
-      // 如果需要操作项， 则需要传当前需要的按钮 type 类型 主要是自己拿到这个类型的时候知道该做什么操作就行，value是按钮显示的内容
-      operateList: [
-        { type: 'delete', value: '删除' },
-        { type: 'edit', value: '编辑' },
-        { type: 'look', value: '查看' }
-      ],
+}
+const formSize = ref('default')
+const ruleFormRef = ref<FormInstance>()
+let ruleForm: any = reactive({
+  id: 1,
+  storeId: 2,
+  storeName: '',
+  status: '',
+  origin: '',
+  phone: '',
+  concat: '',
+  date: '',
+  createTime: '',
+  storeCount: ''
+})
+
+const rules = reactive<FormRules>({
+  storeName: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' },
+  ],
+  status: [
+    {
+      required: true,
+      message: 'Please select Activity zone',
+      trigger: 'blur',
+    },
+  ],
+  origin: [
+    {
+      required: true,
+      message: 'Please select Activity count',
+      trigger: 'change',
+    },
+  ],
+  date: [
+    {
+      type: 'date',
+      required: true,
+      message: 'Please pick a date',
+      trigger: 'change',
+    },
+  ],
+  phone: [
+    {
+      type: 'array',
+      required: true,
+      message: 'Please select at least one activity type',
+      trigger: 'change',
+    },
+  ],
+  concat: [
+    {
+      required: true,
+      message: 'Please select activity resource',
+      trigger: 'change',
+    },
+  ]
+})
+
+const cancel = () => {
+  ruleForm = {
+
+  }
+  dialogVisible.value = false
+}
+const newAdd = () => {
+  ruleForm = {
+
+  }
+  dialogVisible.value = true
+  title.value = '新建'
+
+}
+const handleEdit = (index: number, row: User) => {
+  dialogVisible.value = true
+  ruleForm = row
+
+}
+const handleDelete = (index: number, row: User) => {
+  ElMessageBox.confirm(
+    '确定删除当前这条数据么?',
+    '提示',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }
+  )
+    .then(() => {
+      tableData.splice(index, 1)
+      ElMessage({
+        type: 'success',
+        message: '删除成功',
+      })
     })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '已取消',
+      })
+    })
+
+}
+const sure = () => {
+  dialogVisible.value = false
+  tableData.splice(0, 0, ruleForm)
+}
+const tableData: any[] = reactive([
+  {
+    id: 1,
+    storeId: 1,
+    date: '2016-05-03',
+    storeName: '王小虎',
+    status: '1',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 12
+  },
+  {
+    id: 1,
+    storeId: 2,
+    date: '2016-05-02',
+    storeName: '王小虎',
+    status: '2',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 13
+  },
+  {
+    id: 2,
+    storeId: 3,
+    date: '2016-05-04',
+    storeName: '王小虎',
+    status: '3',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 2
+  },
+  {
+    id: 2,
+    storeId: 4,
+    date: '2016-05-01',
+    storeName: '王小虎',
+    status: '4',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 5
+  },
+  {
+    id: 3,
+    storeId: 5,
+    date: '2016-05-08',
+    storeName: '王小虎',
+    status: '5',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 6,
+    date: '2016-05-06',
+    storeName: '王小虎',
+    status: '6',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '7',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '7',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '2',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '7',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '7',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  },
+  {
+    id: 4,
+    storeId: 7,
+    date: '2016-05-07',
+    storeName: '王小虎',
+    status: '7',
+    origin: '上海市普陀区金沙江路 1518 弄',
+    phone: '15117960415',
+    concat: '小鱼仔',
+    createTime: '2022-1-15',
+    storeCount: 1
+  }
+])
 </script>
+<style lang="scss" scoped>
+.top-button-warp {
+  margin-bottom: 30px;
+}
+</style>
+<style>
+.el-select {
+  width: 100%;
+}
+
+.el-input__wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.el-form-item,
+.el-form-item__content {
+  width: 100%;
+}
+</style>

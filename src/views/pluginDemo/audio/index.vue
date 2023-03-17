@@ -1,6 +1,9 @@
 <template>
-  <section class="richtext-warp">
-    audio
+  <section>
+    1212212
+   <audio src="../../assets/1.mp4"></audio>
   </section>
 </template>
-<script lang="ts" setup></script>
+<script setup>
+
+</script>

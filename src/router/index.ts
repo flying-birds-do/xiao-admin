@@ -1,3 +1,4 @@
+import { fa } from 'element-plus/es/locale'
 import { createRouter, createWebHistory } from 'vue-router'
 import layout from '../layout/index.vue'
 /**
@@ -6,20 +7,26 @@ import layout from '../layout/index.vue'
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
-		// {
-		// 	path: '',
-		// 	component: layout,
-		// 	redirect: 'index',
-		// 	meta: { title: '首页', icon: 'dashboard', affix: true, hidden: true },
-		// 	children: [
-		// 		{
-		// 			path: 'index',
-		// 			component: () => import('../views/HomePage.vue'),
-		// 			name: 'Index',
-		// 			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: true },
-		// 		},
-		// 	],
-		// },
+		{
+			path: '',
+			component: layout,
+			redirect: '/watchImage/analysis',
+			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: false },
+			children: [
+				{
+					path: 'index',
+					component: () => import('../views/HomePage.vue'),
+					name: 'Index',
+					meta: {
+						title: '首页',
+						icon: 'dashboard',
+						affix: true,
+						hidden: false,
+					},
+				},
+			],
+		},
+
 		{
 			name: 'login',
 			path: '/login',
@@ -184,6 +191,15 @@ const router = createRouter({
 					name: 'audio',
 					meta: {
 						title: '音频',
+						hidden: true,
+					},
+				},
+				{
+					path: '/pluginDemo/video',
+					component: () => import('../views/pluginDemo/video/index.vue'),
+					name: 'video',
+					meta: {
+						title: '视频',
 						hidden: true,
 					},
 				},
