@@ -15,6 +15,7 @@ jobs:
         run: |
           yarn
           yarn run build
+           cp dist/index.html dist/404.html
 
       - name: Deploy   # 部署
         uses: JamesIves/github-pages-deploy-action@v4.3.3
