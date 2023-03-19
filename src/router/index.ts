@@ -1,7 +1,6 @@
 import { fa } from 'element-plus/es/locale'
 import { createRouter, createWebHistory } from 'vue-router'
 import layout from '../layout/index.vue'
-import { ElMessage } from 'element-plus'
 const whiteList = ['/login', '']
 /**
  * 菜单项字段配置结构
