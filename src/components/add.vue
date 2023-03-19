@@ -11,7 +11,6 @@
     ref="ruleFormRef"
     :model="ruleForm"
     :rules="rules"
-    :size="formSize"
     label-width="120px"
     class="demo-ruleForm"
     status-icon
@@ -50,7 +49,6 @@ import { reactive, ref , Ref, computed, watch} from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import User from '../class/User'
 
-const formSize = ref('default')
 const props = defineProps({
   isShow: Boolean,
   info: User,
