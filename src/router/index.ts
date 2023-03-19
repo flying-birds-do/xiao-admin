@@ -360,28 +360,4 @@ router.beforeEach((to, from, next) => {
 	}
 })
 
-// router.beforeEach(async (to, from, next) => {
-// 	//获取token
-// 	// determine whether the user has logged in
-// 	const hasToken = JSON.parse(localStorage.getItem('user'))
-// 	if (hasToken) {
-// 		//token存在，如果当前跳转的路由是登录界面
-// 		if (to.path === '/login') {
-// 			// if is logged in, redirect to the home page
-// 			next({ path: '/' })
-// 			NProgress.done()
-// 		} else {
-// 			//token不存在
-// 			if (whiteList.indexOf(to.path) !== -1) {
-// 				//如果要跳转的路由在白名单里，则跳转过去
-// 				next()
-// 			} else {
-// 				//否则跳转到登录页面
-// 				next(`/login?redirect=${to.path}`)
-// 				NProgress.done()
-// 			}
-// 		}
-// 	}
-// })
-
 export default router
