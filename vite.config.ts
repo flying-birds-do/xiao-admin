@@ -41,5 +41,6 @@ export default ({ mode }) =>
 			},
 		},
 		base: mode === 'production' ? '/xiao-admin/' : '/',
-		publicPath: process.env.BASE_URL,
+		// publicPath: process.env.BASE_URL,
+		publicPath: './',
 	})
