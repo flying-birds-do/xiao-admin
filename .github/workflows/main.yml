@@ -19,13 +19,13 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - name: Build
-        run: yarn docs:build
+        run: pnpm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: /dist
           # cname: example.com # if wanna deploy to custom domain
 Footer
 © 2023 GitHub, Inc.
