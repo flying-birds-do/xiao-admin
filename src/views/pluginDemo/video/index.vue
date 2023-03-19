@@ -1,71 +1,29 @@
 <template>
-    <div class="videoPlay">
-        <video ref="m3u8_video" class="video-js vjs-default-skin vjs-big-play-centered" controls>
-            <source :src="path" />
-        </video>
+    <div class="video-style">
+        <vue3VideoPlay class="vue-video" v-bind="options" :poster='poster' />
     </div>
 </template>
-<script lang="ts" setup>
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import videojs, { VideoJsPlayer } from 'video.js'
-import 'video.js/dist/video-js.css'
-import zh from "video.js/dist/lang/zh-CN.json"
-const props = withDefaults(defineProps<{
-    path: string;
-    autoPlay?: boolean;
-}>(), { autoPlay: false })
-const m3u8_video = ref()
-let player: VideoJsPlayer
-const initPlay = async () => {
 
-    videojs.addLanguage('zh-CN',zh)
-    await nextTick()
-    const options = {
-        muted: true,
-        controls: true,
-        autoplay: props.autoPlay && props.path,
-        loop: true,
-        language: 'zh-CN',
-        techOrder: ["html5"],
-    };
-    player = videojs(m3u8_video.value, options, () => {
-        videojs.log('播放器已经准备好了!');
-        if (props.autoPlay && props.path) {
-            player.play()
-        }
-        player.on('ended', () => {
-            videojs.log('播放结束了!');
-        });
-        player.on('error', () => {
-            videojs.log('播放器解析出错!');
-        })
-    });
-}
-onMounted(() => {
-    initPlay()
-})
-//直接改变路径测试
-watch(() => props.path, () => {
-    player.pause()
-    player.src(props.path)
-    player.load()
-    if (props.path) {
-        player.play()
-    }
-})
-onBeforeUnmount(() => {
-    player?.dispose()
+<script lang="ts" setup>
+import { ref, reactive } from "vue";
+//视频封面，为空时，会自动获取第一帧作为视频封皮
+const poster = ref("");
+// 视频配置参数大多都支持props传入
+const options = reactive({
+    width: '1000px', //播放器高度
+    height: '600px', //播放器高度
+    color: "#409eff", //主题色
+    title: '', //视频名称
+    src: '/1.mp4', //视频源，地址可通过传参传入
+    muted: false, //静音
+    webFullScreen: false,
+    speedRate: ["0.75", "1.0", "1.25", "1.5", "2.0"], //播放倍速
+    autoPlay: false, //自动播放
+    loop: false, //循环播放
+    mirror: false, //镜像画面
+    ligthOff: false,  //关灯模式
+    volume: 0.3, //默认音量大小
+    control: false,  //是否显示控制器
 })
 
 </script>
-<style lang="scss" scoped>
-.videoPlay {
-    flex: 1;
-    height: 1px;
-
-    .video-js {
-        height: 100%;
-        width: 100%;
-    }
-}
-</style>

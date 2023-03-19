@@ -2,7 +2,7 @@
   <template v-for="(item, index) in menuList" :key="index">
     <!-- 如果当前菜单有下级,循环下级 -->
     <el-sub-menu
-      v-if="item?.children && item?.meta?.hidden && item?.children?.length > 0"
+      v-if="item?.children && item?.meta?.hidden && item?.children?.length > 0 && !item?.meta?.needMenu "
       :index="item?.path"
     >
       <template #title>

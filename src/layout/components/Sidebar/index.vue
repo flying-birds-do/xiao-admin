@@ -2,13 +2,12 @@
   <section class="side-left-warp">
     	<!-- element-plus 组件 -->
     <el-menu
-      default-active="1"
+      :default-active="activeNav"
       active-text-color="#ffd04b"
       background-color="#545c64"
       text-color="#fff"
       class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
+    
        router
       unique-opened
     >
@@ -17,37 +16,18 @@
   </section>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { ref ,onMounted} from 'vue'
+import {
+  useRouter, useRoute} from 'vue-router';
 import MenuItem from './MenuItem.vue'
 let router = useRouter()
+let route = useRoute()
 const routes = router.options.routes
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-  router.push({name:key})
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const sideBarNavList = ref([
-  {
-    path: '/',
-    title: '仪表盘',
-    icon: 'icon-date',
-    children: [
-      {
-        path: '/',
-        title: '分析页',
-        icon: 'icon-date',
-      },
-      {
-        path: '/',
-        title: '工作台',
-        icon: 'icon-date',
-      }
-    ]
-  }
-])
+// 默认打开的菜单
+let activeNav:any = ref('')
+onMounted(() => {
+  activeNav.value =route.path 
+})
 </script>
 <style scoped lang="scss">
 .side-left-warp {

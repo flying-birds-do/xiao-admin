@@ -1,7 +1,7 @@
 <template>
   <section class="login-warp">
     <div class="login-form-warp">
-      <h1 class="title">内卷管理系统</h1>
+      <h1 class="title">xiao Admin 系统</h1>
   <el-form
     ref="ruleFormRef"
     :model="ruleForm"
@@ -33,8 +33,8 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import  http from '@/api/index'
 import { useRouter } from 'vue-router';
-const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const router = useRouter()
 const ruleForm = reactive({
@@ -60,10 +60,18 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       console.log('submit!')
       router.push('/')
+      //  toLogin(ruleForm)
+
+      localStorage.setItem('token',JSON.stringify(ruleForm))
     } else {
       console.log('error submit!', fields)
     }
   })
+}
+const toLogin = async (ruleForm: any) => {
+  const data = await http.Login(ruleForm)
+  console.log(data)
+  console.log(2332)
 }
 
 </script>
@@ -80,7 +88,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 }
 
 .login-form-warp {
-  width: 30%;
+  width: 35%;
   background: rgba(255, 255, 255,0.7);
   height: 560px;
   border-radius: 10px;

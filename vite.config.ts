@@ -26,6 +26,7 @@ export default defineConfig({
 			/* options */
 		}),
 	],
+	extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
 	server: {
 		open: true, // 自动打开浏览器
 		proxy: {
@@ -38,4 +39,5 @@ export default defineConfig({
 			},
 		},
 	},
+	publicPath: process.env.BASE_URL,
 })

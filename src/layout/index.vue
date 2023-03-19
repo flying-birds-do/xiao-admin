@@ -7,7 +7,7 @@
           微型vue3 + vite + ts 后台管理系统
         </p>
         </div>
-        <p class="quit">退出</p>
+        <p class="quit" @click="quit">退出</p>
       </div>
       <div class="content-warp">
       <Sidebar class="sidebar-container" />
@@ -21,10 +21,14 @@
 </template>
 <script setup lang="ts">
 import { ref,computed } from 'vue';
-import AppMain from './components/AppMain.vue'
 import Sidebar from './components/Sidebar/index.vue'
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter()
 const classObj = computed(() => { })
-const fixedHeader = ref({})
+const quit = () => {
+  localStorage.removeItem('user');
+  router.push('/login')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -58,6 +62,9 @@ const fixedHeader = ref({})
 .sidebar-container {
   width: 200px;
 
+}
+.quit {
+  cursor: pointer;
 }
 .content-warp {
   display: flex;

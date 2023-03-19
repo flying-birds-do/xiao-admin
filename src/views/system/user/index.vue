@@ -1,0 +1,402 @@
+<template>
+  <section class="user-warp">
+    <div class="tree-warp">
+      <el-tree ref="treeRef" class="filter-tree" :data="data" :props="defaultProps" default-expand-all
+        :filter-node-method="filterNode" />
+    </div>
+    <div class="right-warp">
+      <el-row class="top-button-warp">
+        <el-button type="primary" @click="newAdd">新建用户</el-button>
+      </el-row>
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column label="用户昵称" prop="name" />
+        <el-table-column label="手机号码" prop="phone" width="120" />
+        <el-table-column label="用户状态" prop="status">
+          <template #default="scope">
+            {{ scope.row?.status === '1' ? '正常' : " 禁用" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="归属部门" prop="partment" />
+        <el-table-column label="用户密码" prop="password" />
+        <el-table-column label="用户性别">
+          <template #default="scope">
+            {{ scope.row?.ex === '1' ? '男' : " 女" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="岗位" prop="position" />
+        <el-table-column label="角色" prop="roles" />
+        <el-table-column label="操作" width="160">
+          <template #default="scope">
+            <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
+      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
+        <el-form-item label="用户昵称" prop="name">
+          <el-input v-model.number="ruleForm.name" placeholder="请输入用户昵称" />
+        </el-form-item>
+        <el-form-item label="手机号码" prop="phone">
+          <el-input v-model="ruleForm.phone" placeholder="请输入仓库名称" />
+        </el-form-item>
+        <el-form-item label="用户状态" prop="status">
+          <el-select v-model="ruleForm.status" placeholder="请选择商品状态">
+            <el-option label="正常" value="1" />
+            <el-option label="禁用" value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="归属部门" required prop="partment">
+          <el-tree ref="treeRef" class="filter-tree" :data="data" :props="defaultProps"
+            :filter-node-method="filterNode" />
+        </el-form-item>
+        <el-form-item label="用户密码" prop="password">
+          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称" />
+        </el-form-item>
+        <el-form-item label="用户性别" prop="ex">
+          <el-select v-model="ruleForm.ex" placeholder="请选择用户性别">
+            <el-option label="男" value="1" />
+            <el-option label="女" value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="岗位" prop="position">
+          <el-select v-model="ruleForm.position" placeholder="请选择岗位">
+            <el-option label="董事长" value="1" />
+            <el-option label="项目经理" value="2" />
+            <el-option label="人力资源" value="3" />
+            <el-option label="普通员工" value="4" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="角色" prop="roles">
+          <el-select v-model="ruleForm.roles" placeholder="请选择角色">
+            <el-option label="普通员工" value="1" />
+            <el-option label="管理员" value="2" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+    </xyDialog>
+  </section>
+</template>
+<script lang="ts" setup>
+import xyDialog from '@/components/xDolog/index.vue'
+import { ref, reactive, watch } from 'vue'
+import { ElMessage, ElMessageBox, FormInstance, FormRules, Action, ElTree } from 'element-plus'
+import { useCounterStore } from '@/store/counter.js'
+
+interface Tree {
+  id: number
+  label: string
+  children?: Tree[]
+}
+
+const filterText = ref('')
+const treeRef = ref<InstanceType<typeof ElTree>>()
+
+const defaultProps = {
+  children: 'children',
+  label: 'label',
+}
+
+watch(filterText, (val) => {
+  treeRef.value!.filter(val)
+})
+const filterNode = (value: any, data: any) => {
+  if (!value) return true
+  return data.label.includes(value)
+}
+
+const data: Tree[] = [
+  {
+    id: 1,
+    label: '北京智慧医疗有限公司',
+    children: [
+      {
+        id: 4,
+        label: '市场扩展部',
+        children: [
+          {
+            id: 9,
+            label: '设计部',
+          },
+          {
+            id: 10,
+            label: '运营部',
+          },
+          {
+            id: 11,
+            label: '开阔业务部',
+          },
+          {
+            id: 12,
+            label: '医疗服务部',
+          }
+        ],
+      },
+      {
+        id: 4,
+        label: '产品研发部',
+        children: [
+          {
+            id: 9,
+            label: '设计部',
+          },
+          {
+            id: 10,
+            label: '产品部',
+          },
+          {
+            id: 11,
+            label: '后台管理',
+          },
+          {
+            id: 12,
+            label: '前端',
+          }
+        ],
+      },
+    ],
+  }
+]
+const counter = useCounterStore()
+counter.count++
+// 带自动补全 ✨
+counter.$patch({ count: counter.count + 10 })
+// 或使用 action 代替
+counter.increment()
+const dialogVisible = ref(false);
+const row = reactive({})
+const title = ref('编辑')
+interface User {
+  id: number;
+  storeId: number;
+  storeName: string;
+  status: number;
+  origin: string;
+  phone: string;
+  concat: string;
+  date: string;
+  createTime: string;
+  storeCount: number;
+
+}
+const formSize: any = ref('default')
+const ruleFormRef = ref<FormInstance>()
+let ruleForm: any = reactive({
+  id: 1,
+  name: 2,
+  phone: '',
+  status: '',
+  ex: '',
+  position: '',
+  partment: '',
+  roles: ''
+})
+
+const rules = reactive<FormRules>({
+  storeName: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' },
+  ],
+  status: [
+    {
+      required: true,
+      message: 'Please select Activity zone',
+      trigger: 'blur',
+    },
+  ],
+  origin: [
+    {
+      required: true,
+      message: 'Please select Activity count',
+      trigger: 'change',
+    },
+  ],
+  date: [
+    {
+      type: 'date',
+      required: true,
+      message: 'Please pick a date',
+      trigger: 'change',
+    },
+  ],
+  phone: [
+    {
+      type: 'array',
+      required: true,
+      message: 'Please select at least one activity type',
+      trigger: 'change',
+    },
+  ],
+  concat: [
+    {
+      required: true,
+      message: 'Please select activity resource',
+      trigger: 'change',
+    },
+  ]
+})
+
+const cancel = () => {
+  ruleForm = {
+
+  }
+  dialogVisible.value = false
+}
+const newAdd = () => {
+  ruleForm = {
+
+  }
+  dialogVisible.value = true
+  title.value = '新建用户'
+
+}
+const handleEdit = (index: number, row: User) => {
+  dialogVisible.value = true
+  ruleForm = row
+
+}
+const handleDelete = (index: number, row: User) => {
+  ElMessageBox.confirm(
+    '确定删除当前这条数据么?',
+    '提示',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }
+  )
+    .then(() => {
+      tableData.splice(index, 1)
+      ElMessage({
+        type: 'success',
+        message: '删除成功',
+      })
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '已取消',
+      })
+    })
+
+}
+const sure = () => {
+  dialogVisible.value = false
+  tableData.splice(0, 0, ruleForm)
+}
+const tableData: any[] = reactive([
+  {
+    id: 1,
+    name: '爱笑的猫',
+    password: '12345678',
+    partment: '财务部',
+    status: '1',
+    roles: '管理员',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+  {
+    id: 1,
+    name: 'admin',
+    password: '12345678',
+    partment: '办公室',
+    status: '1',
+    roles: '超级管理员',
+    phone: '15117960416',
+    ex: '2',
+    position: "管理"
+  },
+  {
+    id: 2,
+    name: '丽丽',
+    password: '12345678',
+    partment: '研发部',
+    status: '1',
+    roles: '管理员',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+  {
+    id: 3,
+    name: '小美',
+    password: '12345678',
+    partment: '运营部',
+    status: '1',
+    roles: '管理员',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+  {
+    id: 4,
+    name: '晓璐',
+    password: '12345678',
+    partment: '财务部',
+    status: '1',
+    roles: '普通员工',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+  {
+    id: 5,
+    name: '王芳',
+    password: '12345678',
+    partment: '财务部',
+    status: '1',
+    roles: '普通员工',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+  {
+    id: 6,
+    name: '李小冉',
+    password: '12345678',
+    partment: '财务部',
+    status: '1',
+    roles: '普通员工',
+    phone: '15117960415',
+    ex: '1',
+    position: "基础岗位"
+  },
+])
+</script>
+<style lang="scss" scoped>
+.top-button-warp {
+  margin-bottom: 30px;
+}
+
+.user-warp {
+  display: flex;
+
+  .tree-warp {
+    width: 240px;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+  }
+
+  .right-warp {
+    flex: 1;
+  }
+
+}
+</style>
+<style>
+.el-select {
+  width: 100%;
+}
+
+.el-input__wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.el-form-item,
+.el-form-item__content {
+  width: 100%;
+}
+</style>

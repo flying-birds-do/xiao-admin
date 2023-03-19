@@ -37,3 +37,10 @@ declare module 'vue-video-player/src'
 declare module '@kangc/v-md-editor/lib/preview'
 
 declare module '@kangc/v-md-editor/lib/theme/vuepress.js'
+
+declare module '@/store/counter.js'
+declare interface Window {
+	_AMapSecurityConfig: any
+}
+
+declare module 'qs'

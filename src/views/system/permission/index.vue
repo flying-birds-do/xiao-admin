@@ -1,7 +1,7 @@
 <template>
- <section class="table-warp">
+  <section class="table-warp">
     <el-row class="top-button-warp">
-      <el-button type="primary" @click="newAdd">新建权限</el-button>
+      <el-button type="primary" @click="newAdd">新建权限{{ counter.count }}</el-button>
     </el-row>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="商品id" prop="id" />
@@ -29,14 +29,13 @@
         </template>
       </el-table-column>
     </el-table>
-     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm"
-         status-icon>
+    <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
+      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
         <el-form-item label="商品id" prop="name">
-          <el-input v-model.number="ruleForm.id"  placeholder="请输入商品id"/>
+          <el-input v-model.number="ruleForm.id" placeholder="请输入商品id" />
         </el-form-item>
         <el-form-item label="仓库名称" prop="storeName">
-          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称"/>
+          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称" />
         </el-form-item>
         <el-form-item label="商品状态" prop="status">
           <el-select v-model="ruleForm.status" placeholder="请选择商品状态">
@@ -48,8 +47,8 @@
           <el-date-picker v-model="ruleForm.date" type="date" label="Pick a date" placeholder="请选择日期"
             style="width: 100%" />
         </el-form-item>
-        <el-form-item label="商品源" prop="desc" >
-          <el-input v-model="ruleForm.origin" type="textarea"  placeholder="请输入商品源"/>
+        <el-form-item label="商品源" prop="desc">
+          <el-input v-model="ruleForm.origin" type="textarea" placeholder="请输入商品源" />
         </el-form-item>
       </el-form>
     </xyDialog>
@@ -61,7 +60,13 @@ import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
 import { tr } from 'element-plus/es/locale';
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
-
+import { useCounterStore } from '@/store/counter.js'
+const counter = useCounterStore()
+counter.count++
+// 带自动补全 ✨
+counter.$patch({ count: counter.count + 10 })
+// 或使用 action 代替
+counter.increment()
 const dialogVisible = ref(false);
 const row = reactive({})
 const title = ref('编辑')

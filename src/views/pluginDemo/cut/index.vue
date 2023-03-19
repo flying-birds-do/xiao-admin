@@ -21,7 +21,7 @@ export default {
       try {
         await toClipboard(info)
         ElMessage.success('复制成功')
-      } catch (e) {
+      } catch (e:any) {
         ElMessage.warning('您的浏览器不支持复制：', e)
       }
     }

@@ -1,18 +1,21 @@
 {
 	"compilerOptions": {
+		"noImplicitAny": false,
+		"allowJs": true,
 		"target": "ESNext",
 		"useDefineForClassFields": true,
 		"module": "ESNext",
 		"moduleResolution": "Node",
 		"strict": true,
 		"jsx": "preserve",
+		"preserveValueImports": false,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
 		"noEmit": true,
-		"types": ["element-plus/global"],
+		"types": ["element-plus/global", "vite/client"],
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"]

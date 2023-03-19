@@ -11,10 +11,10 @@ import AMapLoader from '@amap/amap-jsapi-loader';
 /*在Vue3中使用时,需要引入Vue3中的shallowRef方法(使用shallowRef进行非深度监听,
 因为在Vue3中所使用的Proxy拦截操作会改变JSAPI原生对象,所以此处需要区别Vue2使用方式对地图对象进行非深度监听,
 否则会出现问题,建议JSAPI相关对象采用非响应式的普通对象来存储)*/
-import { shallowRef } from '@vue/reactivity';
+import { shallowRef } from 'vue';
 import { ref } from "vue";
 
-// const map = shallowRef(null);
+const map = shallowRef(null);
 const path = ref([]);
 const current_position = ref([]);
 

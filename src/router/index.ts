@@ -1,6 +1,8 @@
 import { fa } from 'element-plus/es/locale'
 import { createRouter, createWebHistory } from 'vue-router'
 import layout from '../layout/index.vue'
+import { ElMessage } from 'element-plus'
+const whiteList = ['/login', '']
 /**
  * 菜单项字段配置结构
  */
@@ -111,6 +113,24 @@ const router = createRouter({
 					name: 'vite',
 					meta: {
 						title: 'vite',
+						hidden: true,
+					},
+				},
+				{
+					path: '/aboutFile/pinia',
+					component: () => import('../views/pinia/index.vue'),
+					name: 'pinia',
+					meta: {
+						title: 'pinia',
+						hidden: true,
+					},
+				},
+				{
+					path: '/aboutFile/vuex',
+					component: () => import('../views/vuex/index.vue'),
+					name: 'vuex',
+					meta: {
+						title: 'vuex',
 						hidden: true,
 					},
 				},
@@ -261,33 +281,42 @@ const router = createRouter({
 			},
 			children: [
 				// 使用手册
+				// {
+				// 	path: '/system/permission',
+				// 	component: () => import('../views/system/permission/index.vue'),
+				// 	name: 'permission',
+				// 	meta: {
+				// 		title: '权限管理',
+				// 		hidden: true,
+				// 	},
+				// },
 				{
-					path: '/system/permission',
-					component: () => import('../views/system/permission/index.vue'),
-					name: 'permission',
+					path: '/system/user',
+					component: () => import('../views/system/user/index.vue'),
+					name: 'user',
 					meta: {
-						title: '权限管理',
+						title: '用户管理',
 						hidden: true,
 					},
 				},
-				{
-					path: '/system/roles',
-					component: () => import('../views/system/roles/index.vue'),
-					name: 'roles',
-					meta: {
-						title: '角色管理',
-						hidden: true,
-					},
-				},
-				{
-					path: '/system/router',
-					component: () => import('../views/system/router/index.vue'),
-					name: 'router',
-					meta: {
-						title: '路由管理',
-						hidden: true,
-					},
-				},
+				// {
+				// 	path: '/system/roles',
+				// 	component: () => import('../views/system/roles/index.vue'),
+				// 	name: 'roles',
+				// 	meta: {
+				// 		title: '角色管理',
+				// 		hidden: true,
+				// 	},
+				// },
+				// {
+				// 	path: '/system/router',
+				// 	component: () => import('../views/system/router/index.vue'),
+				// 	name: 'router',
+				// 	meta: {
+				// 		title: '路由管理',
+				// 		hidden: true,
+				// 	},
+				// },
 			],
 		},
 		{
@@ -297,13 +326,62 @@ const router = createRouter({
 				title: '关于我们',
 				icon: 'Avatar',
 				hidden: true,
+				needMenu: true,
 			},
-			component: () => import('../views/about/index.vue'),
+			component: layout,
+			children: [
+				// 使用手册
+				{
+					path: '/about',
+					component: () => import('../views/about/index.vue'),
+					name: 'permission',
+					meta: {
+						title: '关于我们',
+						hidden: true,
+					},
+				},
+			],
+		},
+		{
+			path: '/:pathMatch(.*)',
+			meta: {
+				hidden: true,
+			},
+			redirect: '/watchImage/analysis',
 		},
 	],
 })
-// let routerPush = Router.prototype.push
-// Router.prototype.push = function push(location) {
-// 	return routerPush.call(this, location).catch((err) => err)
-// }
+router.beforeEach((to, from, next) => {
+	const token: string | null = localStorage.getItem('token')
+	if (!token && to.path !== '/login') {
+		next('/login')
+	} else {
+		next()
+	}
+})
+
+// router.beforeEach(async (to, from, next) => {
+// 	//获取token
+// 	// determine whether the user has logged in
+// 	const hasToken = JSON.parse(localStorage.getItem('user'))
+// 	if (hasToken) {
+// 		//token存在，如果当前跳转的路由是登录界面
+// 		if (to.path === '/login') {
+// 			// if is logged in, redirect to the home page
+// 			next({ path: '/' })
+// 			NProgress.done()
+// 		} else {
+// 			//token不存在
+// 			if (whiteList.indexOf(to.path) !== -1) {
+// 				//如果要跳转的路由在白名单里，则跳转过去
+// 				next()
+// 			} else {
+// 				//否则跳转到登录页面
+// 				next(`/login?redirect=${to.path}`)
+// 				NProgress.done()
+// 			}
+// 		}
+// 	}
+// })
+
 export default router

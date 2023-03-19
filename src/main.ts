@@ -8,14 +8,14 @@ import 'element-plus/dist/index.css'
 import 'animate.css/animate.min.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import eventBus from 'vue3-print-nb' // 打印
-import { createApp } from 'vue'
-import App from './App.vue'
-
+import vue3videoPlay from 'vue3-video-play' // 引入组件
+import 'vue3-video-play/dist/style.css' // 引入css
 // 视频插件
 // import VideoPlayer from 'vue-video-player/src'
 // import 'video.js/dist/video-js.css'
 // import 'vue-video-player/src/custom-theme.css'
 
+import store from './store'
 import VMdPreview from '@kangc/v-md-editor/lib/preview'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
@@ -37,4 +37,6 @@ app
 	})
 	.use(eventBus)
 	.use(VMdPreview)
+	.use(vue3videoPlay)
+	.use(store)
 	.mount('#app')

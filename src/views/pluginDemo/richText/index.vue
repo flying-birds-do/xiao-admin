@@ -51,55 +51,8 @@ export default {
         // images_upload_base_path: '/demo',  //相对基本路径--关于图片上传建议查看--http://tinymce.ax-z.cn/general/upload-images.php
         paste_data_images: true, //图片是否可粘贴
         //此处为图片上传处理函数
-        images_upload_handler: (blobInfo, success, failure) => {
-          // 这里用base64的图片形式上传图片,
-          let reader = new FileReader(); //本地预览
-          reader.readAsDataURL(blobInfo.blob());
-          reader.onloadend = function () {
-            const imgbase64 = reader.result;
-            success(imgbase64);
-          };
-        },
-
+     
         file_picker_types: "file image media", //file image media分别对应三个类型文件的上传：link插件，image和axupimgs插件，media插件。想屏蔽某个插件的上传就去掉对应的参数
-        // 文件上传处理函数
-        file_picker_callback: function (callback, value, meta) {
-          // 使用案例http://tinymce.ax-z.cn/general/upload-images.php
-          // meta.filetype  //根据这个判断点击的是什么file image media
-          let filetype; //限制文件的上传类型,需要什么就添加什么的后缀
-          if (meta.filetype == "image") {
-            filetype = ".jpg, .jpeg, .png, .gif, .ico, .svg";
-          } else if (meta.filetype == "media") {
-            filetype = ".mp3, .mp4, .avi, .mov";
-          } else {
-            filetype =
-                ".pdf, .txt, .zip, .rar, .7z, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .mp3, .mp4, .jpg, .jpeg, .png, .gif, .ico, .svg";
-          }
-          let inputElem = document.createElement("input"); //创建文件选择
-          inputElem.setAttribute("type", "file");
-          inputElem.setAttribute("accept", filetype);
-          inputElem.click();
-          inputElem.onchange = () => {
-            let file = inputElem.files[0]; //获取文件信息
-
-            // 所有都转成base64文件流,来自官方文档https://www.tiny.cloud/docs/configure/file-image-upload/#file_picker_callback
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-              // Note: Now we need to register the blob in TinyMCEs image blob
-              // registry. In the next release this part hopefully won't be
-              // necessary, as we are looking to handle it internally.
-              let id = "blobid" + new Date().getTime();
-              let blobCache = tinymce.activeEditor.editorUpload.blobCache;
-              let base64 = reader.result.split(",")[1];
-              let blobInfo = blobCache.create(id, file, base64);
-              blobCache.add(blobInfo);
-
-              // call the callback and populate the Title field with the file name
-              callback(blobInfo.blobUri(), {title: file.name});
-            };
-          };
-        },
       },
     });
 
