@@ -1,5 +1,6 @@
 {
   "name": "xiao-admin",
+  "homepage": "https://flying-birds-do.github.io/github-actions-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
