@@ -1,1 +1,0 @@
-import{d as s,r as t,o as _,b as c,A as n,_ as o}from"./index-fdcc1e3a.js";const a={class:"vue-full-warp"},r=["src"],l=s({__name:"index",setup(d){const e=t("https://vitejs.cn/");return(f,p)=>(_(),c("section",a,[n("iframe",{class:"wh-full",src:e.value},null,8,r)]))}});const u=o(l,[["__scopeId","data-v-26221ff5"]]);export{u as default};
