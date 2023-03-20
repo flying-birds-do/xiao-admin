@@ -12,65 +12,95 @@ const router = createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
-			path: '/',
-			component: layout,
-			redirect: '/watchImage/analysis',
-			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: false },
-			children: [
-				{
-					path: 'index',
-					component: () => import('../views/HomePage.vue'),
-					name: 'Index',
-					meta: {
-						title: '首页',
-						icon: 'dashboard',
-						affix: true,
-						hidden: false,
-					},
-				},
-			],
-		},
-
-		{
-			name: 'login',
-			path: '/login',
-			meta: {
-				title: '登陆页面',
-				hidden: false,
-			},
-			component: () => import('../views/login/index.vue'),
-		},
-		{
-			name: 'watchImage',
-			path: '/watchImage',
+			name: 'componetentDemo',
+			path: '/componetentDemo',
 			component: layout,
 			meta: {
-				title: '仪表盘',
-				icon: 'Unlock',
+				title: '组件示例',
+				icon: 'Filter',
 				hidden: true,
 			},
 			children: [
 				// 使用手册
 				{
-					path: '/watchImage/analysis',
-					component: () => import('../views/analysis/index.vue'),
-					name: 'analysis',
+					path: '/componetentDemo/button',
+					component: () => import('../views/componetentDemo/button/index.vue'),
+					name: 'button',
 					meta: {
-						title: '大炫图表',
+						title: '按钮',
 						hidden: true,
 					},
 				},
 				{
-					path: '/watchImage/works',
-					component: () => import('../views/works/index.vue'),
-					name: 'works',
+					path: '/componetentDemo/card',
+					component: () => import('../views/componetentDemo/card/index.vue'),
+					name: 'card',
 					meta: {
-						title: '工作中心',
+						title: '卡片',
+						hidden: true,
+					},
+				},
+				{
+					path: '/componetentDemo/table',
+					component: () => import('../views/componetentDemo/table/index.vue'),
+					name: 'table',
+					meta: {
+						title: '表格',
 						hidden: true,
 					},
 				},
 			],
 		},
+		{
+			name: 'system',
+			path: '/system',
+			component: layout,
+			meta: {
+				title: '系统管理',
+				icon: 'Grid',
+				hidden: true,
+			},
+			children: [
+				// 使用手册
+				// {
+				// 	path: '/system/permission',
+				// 	component: () => import('../views/system/permission/index.vue'),
+				// 	name: 'permission',
+				// 	meta: {
+				// 		title: '权限管理',
+				// 		hidden: true,
+				// 	},
+				// },
+				{
+					path: '/system/user',
+					component: () => import('../views/system/user/index.vue'),
+					name: 'user',
+					meta: {
+						title: '用户管理',
+						hidden: true,
+					},
+				},
+				// {
+				// 	path: '/system/roles',
+				// 	component: () => import('../views/system/roles/index.vue'),
+				// 	name: 'roles',
+				// 	meta: {
+				// 		title: '角色管理',
+				// 		hidden: true,
+				// 	},
+				// },
+				// {
+				// 	path: '/system/router',
+				// 	component: () => import('../views/system/router/index.vue'),
+				// 	name: 'router',
+				// 	meta: {
+				// 		title: '路由管理',
+				// 		hidden: true,
+				// 	},
+				// },
+			],
+		},
+
 		{
 			name: 'aboutFile',
 			path: '/aboutFile',
@@ -148,45 +178,34 @@ const router = createRouter({
 			],
 		},
 		{
-			name: 'componetentDemo',
-			path: '/componetentDemo',
+			path: '/',
 			component: layout,
-			meta: {
-				title: '组件示例',
-				icon: 'Filter',
-				hidden: true,
-			},
+			redirect: '/system/user',
+			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: false },
 			children: [
-				// 使用手册
 				{
-					path: '/componetentDemo/button',
-					component: () => import('../views/componetentDemo/button/index.vue'),
-					name: 'button',
+					path: 'index',
+					component: () => import('../views/HomePage.vue'),
+					name: 'Index',
 					meta: {
-						title: '按钮',
-						hidden: true,
-					},
-				},
-				{
-					path: '/componetentDemo/card',
-					component: () => import('../views/componetentDemo/card/index.vue'),
-					name: 'card',
-					meta: {
-						title: '卡片',
-						hidden: true,
-					},
-				},
-				{
-					path: '/componetentDemo/table',
-					component: () => import('../views/componetentDemo/table/index.vue'),
-					name: 'table',
-					meta: {
-						title: '表格',
-						hidden: true,
+						title: '首页',
+						icon: 'dashboard',
+						affix: true,
+						hidden: false,
 					},
 				},
 			],
 		},
+		{
+			name: 'login',
+			path: '/login',
+			meta: {
+				title: '登陆页面',
+				hidden: false,
+			},
+			component: () => import('../views/login/index.vue'),
+		},
+
 		{
 			name: 'pluginDemo',
 			path: '/pluginDemo',
@@ -273,52 +292,34 @@ const router = createRouter({
 			],
 		},
 		{
-			name: 'system',
-			path: '/system',
+			name: 'watchImage',
+			path: '/watchImage',
 			component: layout,
 			meta: {
-				title: '系统管理',
-				icon: 'Grid',
+				title: '仪表盘',
+				icon: 'Unlock',
 				hidden: true,
 			},
 			children: [
 				// 使用手册
-				// {
-				// 	path: '/system/permission',
-				// 	component: () => import('../views/system/permission/index.vue'),
-				// 	name: 'permission',
-				// 	meta: {
-				// 		title: '权限管理',
-				// 		hidden: true,
-				// 	},
-				// },
 				{
-					path: '/system/user',
-					component: () => import('../views/system/user/index.vue'),
-					name: 'user',
+					path: '/watchImage/analysis',
+					component: () => import('../views/analysis/index.vue'),
+					name: 'analysis',
 					meta: {
-						title: '用户管理',
+						title: '大炫图表',
 						hidden: true,
 					},
 				},
-				// {
-				// 	path: '/system/roles',
-				// 	component: () => import('../views/system/roles/index.vue'),
-				// 	name: 'roles',
-				// 	meta: {
-				// 		title: '角色管理',
-				// 		hidden: true,
-				// 	},
-				// },
-				// {
-				// 	path: '/system/router',
-				// 	component: () => import('../views/system/router/index.vue'),
-				// 	name: 'router',
-				// 	meta: {
-				// 		title: '路由管理',
-				// 		hidden: true,
-				// 	},
-				// },
+				{
+					path: '/watchImage/works',
+					component: () => import('../views/works/index.vue'),
+					name: 'works',
+					meta: {
+						title: '工作中心',
+						hidden: true,
+					},
+				},
 			],
 		},
 		{

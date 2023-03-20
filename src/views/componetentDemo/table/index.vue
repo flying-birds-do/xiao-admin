@@ -23,6 +23,11 @@
           </div>
         </template>
       </el-table-column>
+      <el-table-column label="商品图片">
+        <template #default="scope">
+         <img :src="scope.row?.img" alt="图片" width="40" height="40"> 
+        </template>
+      </el-table-column>
       <el-table-column label="操作">
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -126,7 +131,8 @@ const handleSizeChange = (val: number) => {
       phone: '15117960415',
       concat: '小鱼仔' + i,
       createTime: '2022-1-15',
-      storeCount: 12
+      storeCount: 12,
+      img:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
     }
     tableData.data.push(obj)
   }
@@ -149,7 +155,8 @@ const handleCurrentChange = (val: number) => {
       phone: '15117960415',
       concat: '小鱼仔' + i,
       createTime: '2022-1-15',
-      storeCount: 12
+      storeCount: 12,
+      img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
     }
     tableData.data.push(obj)
   }
@@ -318,53 +325,57 @@ const onSubmit = (row: any) => {
       }
     } else {
       tableData.data = [{
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12
-  },
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+        {
+          id: 1,
+          storeId: 2,
+          date: '2016-05-02',
+          storeName: '王小虎11',
+          status: '2',
+          origin: '上海市普陀区金沙江路 1518 弄',
+          phone: '15117960415',
+          concat: '小鱼仔',
+          createTime: '2022-1-15',
+          storeCount: 13,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        },
   {
-    id: 1,
-    storeId: 2,
-    date: '2016-05-02',
-    storeName: '王小虎11',
-    status: '2',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 13
-  },
+          id: 2,
+          storeId: 3,
+          date: '2016-05-04',
+          storeName: '王小虎10',
+          status: '出库中',
+          origin: '上海市普陀区金沙江路 1518 弄',
+          phone: '15117960415',
+          concat: '小鱼仔',
+          createTime: '2022-1-15',
+          storeCount: 2,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        },
   {
-    id: 2,
-    storeId: 3,
-    date: '2016-05-04',
-    storeName: '王小虎10',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 2
-  },
-  {
-    id: 2,
-    storeId: 4,
-    date: '2016-05-01',
-    storeName: '王小虎9',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 5
-  },
+        id: 2,
+        storeId: 4,
+        date: '2016-05-01',
+        storeName: '王小虎9',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 5,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+   },
   {
     id: 3,
     storeId: 5,
@@ -375,7 +386,8 @@ const onSubmit = (row: any) => {
     phone: '15117960415',
     concat: '小鱼仔',
     createTime: '2022-1-15',
-    storeCount: 1
+    storeCount: 1,
+    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
     id: 4,
@@ -387,7 +399,8 @@ const onSubmit = (row: any) => {
     phone: '15117960415',
     concat: '小鱼仔',
     createTime: '2022-1-15',
-    storeCount: 1
+    storeCount: 1,
+    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
     id: 4,
@@ -399,32 +412,35 @@ const onSubmit = (row: any) => {
     phone: '15117960415',
     concat: '小鱼仔',
     createTime: '2022-1-15',
-    storeCount: 1
+    storeCount: 1,
+    img:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎5',
-     status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎4',
-     status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
+        {
+          id: 4,
+          storeId: 7,
+          date: '2016-05-07',
+          storeName: '王小虎5',
+          status: '成功',
+          origin: '上海市普陀区金沙江路 1518 弄',
+          phone: '15117960415',
+          concat: '小鱼仔',
+          createTime: '2022-1-15',
+          storeCount: 1,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        },
+        {
+          id: 4,
+          storeId: 7,
+          date: '2016-05-07',
+          storeName: '王小虎4',
+          status: '成功',
+          origin: '上海市普陀区金沙江路 1518 弄',
+          phone: '15117960415',
+          concat: '小鱼仔',
+          createTime: '2022-1-15',
+          storeCount: 1,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        },
   {
     id: 4,
     storeId: 7,
@@ -435,20 +451,22 @@ const onSubmit = (row: any) => {
     phone: '15117960415',
     concat: '小鱼仔',
     createTime: '2022-1-15',
-    storeCount: 1
+    storeCount: 1,
+    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎2',
-    status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
+        {
+          id: 4,
+          storeId: 7,
+          date: '2016-05-07',
+          storeName: '王小虎2',
+          status: '成功',
+          origin: '上海市普陀区金沙江路 1518 弄',
+          phone: '15117960415',
+          concat: '小鱼仔',
+          createTime: '2022-1-15',
+          storeCount: 1,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        },
   {
     id: 4,
     storeId: 7,
@@ -459,7 +477,8 @@ const onSubmit = (row: any) => {
     phone: '15117960415',
     concat: '小鱼仔',
     createTime: '2022-1-15',
-    storeCount: 1
+    storeCount: 1,
+    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   }
   ]
     }
@@ -491,7 +510,8 @@ const onSubmit = (row: any) => {
           phone: '15117960415',
           concat: '小鱼仔',
           createTime: '2022-1-15',
-          storeCount: 12
+          storeCount: 12,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
         {
           id: 1,
@@ -503,7 +523,8 @@ const onSubmit = (row: any) => {
           phone: '15117960415',
           concat: '小鱼仔',
           createTime: '2022-1-15',
-          storeCount: 13
+          storeCount: 13,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
         {
           id: 2,
@@ -515,7 +536,8 @@ const onSubmit = (row: any) => {
           phone: '15117960415',
           concat: '小鱼仔',
           createTime: '2022-1-15',
-          storeCount: 2
+          storeCount: 2,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
         {
           id: 2,
@@ -527,7 +549,8 @@ const onSubmit = (row: any) => {
           phone: '15117960415',
           concat: '小鱼仔',
           createTime: '2022-1-15',
-          storeCount: 5
+          storeCount: 5,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
         {
           id: 3,
@@ -539,92 +562,74 @@ const onSubmit = (row: any) => {
           phone: '15117960415',
           concat: '小鱼仔',
           createTime: '2022-1-15',
-          storeCount: 1
+          storeCount: 1,
+          img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
-        {
-          id: 4,
-          storeId: 6,
-          date: '2016-05-06',
-          storeName: '王小虎',
-          status: '6',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '7',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '7',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '2',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '7',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '7',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        },
-        {
-          id: 4,
-          storeId: 7,
-          date: '2016-05-07',
-          storeName: '王小虎',
-          status: '7',
-          origin: '上海市普陀区金沙江路 1518 弄',
-          phone: '15117960415',
-          concat: '小鱼仔',
-          createTime: '2022-1-15',
-          storeCount: 1
-        }
+     {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+    {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+  {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+    {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
       ]
     }
   }
@@ -734,149 +739,161 @@ const sure = () => {
 }
 let tableData: any = reactive({
   data: [{
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12
-  },
-  {
-    id: 1,
-    storeId: 2,
-    date: '2016-05-02',
-    storeName: '王小虎11',
-    status: '2',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 13
-  },
-  {
-    id: 2,
-    storeId: 3,
-    date: '2016-05-04',
-    storeName: '王小虎10',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 2
-  },
-  {
-    id: 2,
-    storeId: 4,
-    date: '2016-05-01',
-    storeName: '王小虎9',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 5
-  },
-  {
-    id: 3,
-    storeId: 5,
-    date: '2016-05-08',
-    storeName: '王小虎8',
-    status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 6,
-    date: '2016-05-06',
-    storeName: '王小虎7',
-    status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎6',
-      status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎5',
-     status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎4',
-     status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎3',
-      status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎2',
-    status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎1',
-      status: '成功',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  }
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+ {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+ {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+ {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+ {
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
+{
+        id: 1,
+        storeId: 1,
+        date: '2016-05-03',
+        storeName: '王小虎12',
+        status: '出库中',
+        origin: '上海市普陀区金沙江路 1518 弄',
+        phone: '15117960415',
+        concat: '小鱼仔',
+        createTime: '2022-1-15',
+        storeCount: 12,
+        img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      },
   ]
 }
 )

@@ -20,7 +20,7 @@
         <el-checkbox label="记住密码" v-model="remberPassword" />
         <p>忘记密码?</p>
     </el-form-item>
-    <el-form-item>
+    <el-form-item class="login-btn-warp">
       <el-button type="primary" @click="submitForm(ruleFormRef)" class="login-btn">
         登录
       </el-button>
@@ -98,17 +98,21 @@ const toLogin = async (ruleForm: any) => {
   transform: translate(-50%,-50%);
   padding: 30px;
   box-sizing: border-box;
- .login-btn {
-  width: 100%;
- }
 }
 </style>
 <style lang="scss">
 .password-comine {
  .el-form-item__content {
      display: flex;
-  justify-content: space-between;
+     justify-content: space-between;
   }
- 
 }
+ .login-btn-warp .el-form-item__content {
+     margin-left: 0 !important;
+     display: flex;
+    justify-content: center;
+  }
+  .login-btn-warp .login-btn {
+      width: 120px;
+  }
 </style>
