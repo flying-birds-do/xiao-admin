@@ -318,12 +318,17 @@ const resetSubmit = () => {
 const onSubmit = (row: any) => {
   if (row.name) {
     if (tableData.data.length) {
+      let flag = ref(false);
       tableData.data.filter((item) => {
         if (item.name.includes(row.name)) {
           tableData.data = []
           tableData.data.push(item)
+          flag.value = true;
         }
-      })
+      }) 
+      if (!flag.value) {
+         tableData.data = []
+      }
     } else {
       tableData.data = [
         {
@@ -407,12 +412,17 @@ const onSubmit = (row: any) => {
   }
   if (row.roles) {
     if (tableData.data.length) {
+      let flag = ref(false);
       tableData.data.filter((item) => {
         if (item.roles.includes(row.roles)) {
           tableData.data = []
           tableData.data.push(item)
+           flag.value = true;
         }
       })
+      if (!flag.value) {
+         tableData.data = []
+      }
     } else {
       tableData.data = [
         {

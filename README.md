@@ -1,18 +1,35 @@
-# Vue 3 + TypeScript + Vite
+# Xiao-Admin
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+本项目是基于node 18.14.1,使用vite创建的项目vue3 + ts + element-plus项目.使用pnpm进行包管理和安装.主要实现了后台管理系统常用的列表、数据的增删改查.
+关联了vue3相关的技术文档,如vite、ts、vue-router、vuex、pinia等,引入了echarts实现数据图表,使用vue3-video-play实现视频播放,对axios进行了二次封装.引入高德地图.使用v-md-editor实现富文本编辑器.使用vue-clipboard3实现复制功能等等.
 
-## Recommended IDE Setup
+本项目使用github action进行自动化部署.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 在线展示
 
-## Type Support For `.vue` Imports in TS
+本文档已部署到Github Pages，请点击[在线阅读](https://flying-birds-do.github.io/xiao-admin/)。
+## 作者github地址
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+```javascript
+https://github.com/flying-birds-do
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+```
+## 项目运行命令
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```javascript
+
+git clone https://github.com/flying-birds-do/xiao-admin.git
+
+切到项目目录: cd  xiao-admin
+
+安装依赖: pnpm install || npm install || yarn
+
+运行: pnpm run dev || npm run  dev ||  yarn run dev
+
+打包: pnpm run build || npm run  build  ||  yarn run build 
+
+打包后预览: pnpm run preview || npm run  preview  ||  yarn run preview  
+
+本地预览端口号: http://localhost:4173/xiao-admin/
+
+```
