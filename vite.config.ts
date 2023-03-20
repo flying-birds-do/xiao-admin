@@ -27,7 +27,6 @@ export default ({ mode }) =>
 				/* options */
 			}),
 		],
-		extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
 		server: {
 			open: true, // 自动打开浏览器
 			proxy: {
@@ -41,6 +40,4 @@ export default ({ mode }) =>
 			},
 		},
 		base: mode === 'production' ? '/xiao-admin/' : '/',
-		// publicPath: process.env.BASE_URL,
-		publicPath: './',
 	})
