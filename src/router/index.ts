@@ -344,13 +344,13 @@ const router = createRouter({
 				},
 			],
 		},
-		{
-			path: '/:pathMatch(.*)',
-			meta: {
-				hidden: true,
-			},
-			redirect: '/watchImage/analysis',
-		},
+		// {
+		// 	path: '/:pathMatch(.*)',
+		// 	meta: {
+		// 		hidden: true,
+		// 	},
+		// 	redirect: '/watchImage/analysis',
+		// },
 	],
 })
 router.beforeEach((to, from, next) => {
