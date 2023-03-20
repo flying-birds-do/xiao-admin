@@ -1,0 +1,1 @@
+import{d as s,q as t,o as _,c,i as n,_ as a}from"./index-d9342070.js";const o={class:"vue-full-warp"},l=["src"],r=s({__name:"index",setup(d){const e=t("https://www.tslang.cn/samples/index.html");return(p,i)=>(_(),c("section",o,[n("iframe",{class:"wh-full",src:e.value},null,8,l)]))}});const u=a(r,[["__scopeId","data-v-8f495619"]]);export{u as default};

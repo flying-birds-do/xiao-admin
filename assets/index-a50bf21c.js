@@ -1,0 +1,1 @@
+import{d as s,q as t,o as _,c as a,i as c,_ as o}from"./index-d9342070.js";const n={class:"vue-full-warp"},l=["src"],r=s({__name:"index",setup(d){const e=t("https://element-plus.gitee.io/zh-CN/guide/quickstart.html");return(i,p)=>(_(),a("section",n,[c("iframe",{class:"wh-full",src:e.value},null,8,l)]))}});const f=o(r,[["__scopeId","data-v-5340ead6"]]);export{f as default};
