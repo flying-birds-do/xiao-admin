@@ -1,12 +1,15 @@
 import { fa } from 'element-plus/es/locale'
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+	createRouter,
+	createWebHistory,
+	createWebHashHistory,
+} from 'vue-router'
 import layout from '../layout/index.vue'
-const whiteList = ['/login', '/11']
 /**
  * 菜单项字段配置结构
  */
 const router = createRouter({
-	history: createWebHistory(),
+	history: createWebHashHistory(),
 	routes: [
 		{
 			path: '',
@@ -341,13 +344,13 @@ const router = createRouter({
 				},
 			],
 		},
-		// {
-		// 	path: '/:pathMatch(.*)',
-		// 	meta: {
-		// 		hidden: true,
-		// 	},
-		// 	redirect: '/watchImage/analysis',
-		// },
+		{
+			path: '/:pathMatch(.*)',
+			meta: {
+				hidden: true,
+			},
+			redirect: '/watchImage/analysis',
+		},
 	],
 })
 router.beforeEach((to, from, next) => {
