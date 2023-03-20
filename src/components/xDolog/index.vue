@@ -3,6 +3,7 @@
     v-model="props.dialogVisible"
     :title="Tips"
     width="30%"
+    class="xy-dialog"
     :before-close="handleClose"
   >
       <slot />
@@ -35,4 +36,17 @@ const handleClose = (done: () => void) => {
 .dialog-footer button:first-child {
   margin-right: 10px;
 }
+/* .xy-dialog .el-select {
+  width: 100%;
+}
+
+.xy-dialog .el-input__wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.xy-dialog .el-form-item,
+.el-form-item__content {
+  width: 100%;
+} */
 </style>

@@ -1,7 +1,7 @@
 <template>
   <section class="login-warp">
     <div class="login-form-warp">
-      <h1 class="title">xiao Admin 系统</h1>
+      <h1 class="title">Xiao-Admin 系统</h1>
   <el-form
     ref="ruleFormRef"
     :model="ruleForm"

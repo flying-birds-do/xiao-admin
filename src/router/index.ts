@@ -12,7 +12,7 @@ const router = createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
-			path: '',
+			path: '/',
 			component: layout,
 			redirect: '/watchImage/analysis',
 			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: false },

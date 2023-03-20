@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { reactive,defineEmits } from 'vue'
 const emits = defineEmits(['onSubmit','resetSubmit'])
-const formInline = reactive({
+let formInline = reactive({
   name: '',
   roles: '',
   date: '',
@@ -44,6 +44,12 @@ const onSubmit = () => {
 }
 const resetSubmit = () => {
   console.log('resetSubmit!')
+  formInline = reactive({
+  name: '',
+  roles: '',
+  date: '',
+  status:''
+})
   emits('resetSubmit')
 }
 </script>
