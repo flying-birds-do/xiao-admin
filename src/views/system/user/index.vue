@@ -38,17 +38,17 @@
         :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" class="pagination" />
     </div>
     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
+      <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" class="demo-ruleForm" status-icon>
         <el-form-item label="用户昵称" prop="name">
           <el-input v-model.number="ruleForm.name" placeholder="请输入用户昵称" />
         </el-form-item>
         <el-form-item label="手机号码" prop="phone">
-          <el-input v-model="ruleForm.phone" placeholder="请输入仓库名称" />
+          <el-input v-model="ruleForm.phone" placeholder="请输入手机号" />
         </el-form-item>
         <el-form-item label="用户状态" prop="status">
-          <el-select v-model="ruleForm.status" placeholder="请选择商品状态" class="set-select">
-            <el-option label="正常" value="1" />
-            <el-option label="禁用" value="2" />
+          <el-select v-model="ruleForm.status" placeholder="请选择用户状态" class="set-select">
+            <el-option label="正常" value="正常" />
+            <el-option label="禁用" value="禁用" />
           </el-select>
         </el-form-item>
         <el-form-item label="归属部门" required prop="partment">
@@ -56,26 +56,26 @@
             :filter-node-method="filterNode" />
         </el-form-item>
         <el-form-item label="用户密码" prop="password">
-          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称" />
+          <el-input v-model="ruleForm.password" placeholder="请输入用户密码" />
         </el-form-item>
         <el-form-item label="用户性别" prop="ex">
           <el-select v-model="ruleForm.ex" placeholder="请选择用户性别" class="set-select">
-            <el-option label="男" value="1" />
-            <el-option label="女" value="2" />
+            <el-option label="男" value="男" />
+            <el-option label="女" value="女" />
           </el-select>
         </el-form-item>
         <el-form-item label="岗位" prop="position">
           <el-select v-model="ruleForm.position" placeholder="请选择岗位" class="set-select">
-            <el-option label="董事长" value="1" />
-            <el-option label="项目经理" value="2" />
-            <el-option label="人力资源" value="3" />
-            <el-option label="普通员工" value="4" />
+            <el-option label="董事长" value="董事长" />
+            <el-option label="项目经理" value="项目经理" />
+            <el-option label="人力资源" value="人力资源" />
+            <el-option label="普通员工" value="普通员工" />
           </el-select>
         </el-form-item>
         <el-form-item label="角色" prop="roles">
           <el-select v-model="ruleForm.roles" placeholder="请选择角色" class="set-select">
-            <el-option label="普通员工" value="1" />
-            <el-option label="管理员" value="2" />
+            <el-option label="普通员工" value="普通员工" />
+            <el-option label="管理员" value="管理员" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -516,58 +516,59 @@ interface User {
 
 }
 const ruleFormRef = ref<FormInstance>()
-let ruleForm: any = reactive({
+let ruleForm:any = ref({
   id: 1,
-  name: 2,
+  name: '',
   phone: '',
   status: '',
   ex: '',
   position: '',
   partment: '',
+  password:'',
   roles: ''
 })
-const rules = reactive<FormRules>({
-  storeName: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' },
-  ],
-  status: [
-    {
-      required: true,
-      message: 'Please select Activity zone',
-      trigger: 'blur',
-    },
-  ],
-  origin: [
-    {
-      required: true,
-      message: 'Please select Activity count',
-      trigger: 'change',
-    },
-  ],
-  date: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a date',
-      trigger: 'change',
-    },
-  ],
-  phone: [
-    {
-      type: 'array',
-      required: true,
-      message: 'Please select at least one activity type',
-      trigger: 'change',
-    },
-  ],
-  concat: [
-    {
-      required: true,
-      message: 'Please select activity resource',
-      trigger: 'change',
-    },
-  ]
-})
+// const rules = reactive<FormRules>({
+//   storeName: [
+//     { required: true, message: 'Please input Activity name', trigger: 'blur' },
+//   ],
+//   status: [
+//     {
+//       required: true,
+//       message: 'Please select Activity zone',
+//       trigger: 'blur',
+//     },
+//   ],
+//   origin: [
+//     {
+//       required: true,
+//       message: 'Please select Activity count',
+//       trigger: 'change',
+//     },
+//   ],
+//   date: [
+//     {
+//       type: 'date',
+//       required: true,
+//       message: 'Please pick a date',
+//       trigger: 'change',
+//     },
+//   ],
+//   phone: [
+//     {
+//       type: 'array',
+//       required: true,
+//       message: 'Please select at least one activity type',
+//       trigger: 'change',
+//     },
+//   ],
+//   concat: [
+//     {
+//       required: true,
+//       message: 'Please select activity resource',
+//       trigger: 'change',
+//     },
+//   ]
+// })
 // pinaia 
 const addPinaia = () => {
   counter.count++
@@ -577,18 +578,18 @@ const addPinaia = () => {
   // counter.increment()
 }
 const cancel = () => {
-  ruleForm = {}
+  ruleForm.value = {}
   dialogVisible.value = false
 }
 const newAdd = () => {
-  ruleForm = {}
+  ruleForm.value = {}
   dialogVisible.value = true
   title.value = '新建用户'
   addPinaia()
 }
 const handleEdit = (index: number, row: User) => {
   dialogVisible.value = true
-  ruleForm = row
+  ruleForm.value = row
 
 }
 const handleDelete = (index: number, row: User) => {
@@ -618,7 +619,7 @@ const handleDelete = (index: number, row: User) => {
 }
 const sure = () => {
   dialogVisible.value = false
-  tableData.data.splice(0, 0, ruleForm)
+  tableData.data.splice(0, 0, ruleForm.value)
 }
 let tableData: any = reactive({
   data: [
