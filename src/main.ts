@@ -10,6 +10,8 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import eventBus from 'vue3-print-nb' // 打印
 import vue3videoPlay from 'vue3-video-play' // 引入组件
 import 'vue3-video-play/dist/style.css' // 引入css
+import { cloneDeep } from 'lodash'
+const obj = cloneDeep({})
 // 视频插件
 // import VideoPlayer from 'vue-video-player/src'
 // import 'video.js/dist/video-js.css'
