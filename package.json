@@ -9,6 +9,9 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
+  },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^2.1.0",
@@ -34,6 +37,7 @@
     "tinymce": "^5.6.2",
     "video.js": "^8.0.4",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.2.45",
     "vue-clipboard3": "^2.0.0",
     "vue-router": "4",
