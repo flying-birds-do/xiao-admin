@@ -5,10 +5,11 @@
         :filter-node-method="filterNode" />
     </div>
     <div class="right-warp">
-      <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
       <el-row class="top-button-warp">
+      <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
         <el-button type="primary" @click="newAdd">新建用户</el-button>
       </el-row>
+      <div class="table-template-warp"> 
       <el-table :data="tableData.data" style="width: 100%">
         <el-table-column label="用户昵称" prop="name" />
         <el-table-column label="手机号码" prop="phone" width="120" />
@@ -33,10 +34,13 @@
           </template>
         </el-table-column>
       </el-table>
+      </div>
+      <div class="pagination" >
       <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[100, 200, 300, 400]"
         :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
-        :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" class="pagination" />
+        :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </div>
+      </div>
     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
       <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" class="demo-ruleForm" status-icon>
         <el-form-item label="用户昵称" prop="name">
@@ -716,6 +720,9 @@ let tableData: any = reactive({
 <style lang="scss" scoped>
 .top-button-warp {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 .user-warp {
@@ -740,7 +747,7 @@ let tableData: any = reactive({
 
 .pagination {
   text-align: right;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 </style>
 <!-- <style>

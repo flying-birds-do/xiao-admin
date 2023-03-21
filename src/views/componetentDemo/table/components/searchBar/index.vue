@@ -43,6 +43,9 @@ const resetSubmit = () => {
 }
 </script>
 <style lang="scss" scoped>
+.demo-form-inline {
+  text-align: left;
+}
 .demo-form-inline .el-form--inline .el-form-item {
   margin-right: 12px;
 }

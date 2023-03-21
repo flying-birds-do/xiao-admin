@@ -4,7 +4,7 @@
         <div class="header-left-warp">
            <img src="../assets/images/head-img.jpg" alt="头像" class="head-img">
             <p class="title">
-          微型vue3 + vite + ts 后台管理系统
+          Xiao-Admin系统
         </p>
         </div>
         <p class="quit" @click="quit">退出</p>
@@ -70,11 +70,16 @@ const quit = () => {
   display: flex;
   padding-top: 60px;
   min-height: calc(100vh - 60px);
+  overflow: hidden;
   .main-container {
     flex: 1;
-    padding: 20px 20px 20px 220px;
+    padding: 20px 20px 20px 240px;
     overflow-y: auto;
    min-height: calc(100vh - 60px);
+     overflow: hidden;
   }
+}
+.main-container {
+  overflow: hidden;
 }
 </style>

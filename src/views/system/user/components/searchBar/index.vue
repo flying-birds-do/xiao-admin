@@ -47,6 +47,9 @@ const resetSubmit = () => {
 .demo-form-inline .el-form--inline .el-form-item {
   margin-right: 12px;
 }
+.demo-form-inline  {
+  text-align: left;
+}
 
 :deep .el-form-item {
   margin-right: 10px;
