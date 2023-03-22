@@ -22,7 +22,7 @@
         <el-table-column label="商品源" prop="origin" width="240"/>
         <el-table-column label="日期">
           <template #default="scope" v-model.n>
-            <div style="display: flex; align-items: center">
+            <div style="display: flex; align-items: center;justify-content: center;">
               <el-icon>
                 <timer />
               </el-icon>
