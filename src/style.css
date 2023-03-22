@@ -79,7 +79,7 @@ button:focus-visible {
 	}
 }
 .table-template-warp {
-	height: calc(100vh - 220px);
+	/* height: calc(100vh - 220px); */
 	overflow: auto;
 }
 /* .pagination {
@@ -92,9 +92,12 @@ button:focus-visible {
 	width: 100%;
 	display: flex;
 	justify-content: end;
+	position: absolute;
+	right: 20px;
+	bottom: 30px;
 }
 html,
 body,
 #app {
-	overflow: hidden;
+	/* overflow: hidden; */
 }

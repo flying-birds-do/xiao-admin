@@ -2,7 +2,7 @@
   <section class="table-warp">
     <el-row class="top-button-warp">
       <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
-      <el-button type="primary" @click="newAdd">新建</el-button>
+      <el-button type="success" @click="newAdd">新建</el-button>
     </el-row>
     <div class="table-template-warp">
       <el-table :data="tableData.data" style="width: 100%">
@@ -10,7 +10,7 @@
         <el-table-column label="仓库名称" prop="storeName" />
         <el-table-column label="商品图片">
           <template #default="scope">
-            <img :src="scope.row?.img" alt="图片" width="100" height="60">
+            <img :src="scope.row?.img" alt="图片" width="100" height="50">
           </template>
         </el-table-column>
         <el-table-column label="商品状态" prop="status">
@@ -784,97 +784,97 @@ let tableData: any = reactive({
     storeCount: 12,
     img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
-  {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎12',
-    status: '出库中',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12,
-    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
+  // {
+  //   id: 1,
+  //   storeId: 1,
+  //   date: '2016-05-03',
+  //   storeName: '王小虎12',
+  //   status: '出库中',
+  //   origin: '上海市普陀区金沙江路 1518 弄',
+  //   phone: '15117960415',
+  //   concat: '小鱼仔',
+  //   createTime: '2022-1-15',
+  //   storeCount: 12,
+  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+  // },
   ]
 }
 )
@@ -883,7 +883,7 @@ let tableData: any = reactive({
 .top-button-warp {
   margin-bottom: 30px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 
 .pagination {

@@ -18,7 +18,7 @@ import { computed } from 'vue'
   margin: 122px 20px 0;
   min-height: calc(100vh - 122px);
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   background: #fff;
   border-radius: 2px;
 }

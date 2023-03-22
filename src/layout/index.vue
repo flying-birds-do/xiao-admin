@@ -70,13 +70,13 @@ const quit = () => {
   display: flex;
   padding-top: 60px;
   min-height: calc(100vh - 60px);
-  overflow: hidden;
+  // overflow: hidden;
   .main-container {
     flex: 1;
     padding: 20px 20px 20px 240px;
     overflow-y: auto;
    min-height: calc(100vh - 60px);
-     overflow: hidden;
+    //  overflow: hidden;
   }
 }
 .main-container {

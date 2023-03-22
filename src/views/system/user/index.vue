@@ -7,7 +7,7 @@
     <div class="right-warp">
       <el-row class="top-button-warp">
       <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
-        <el-button type="primary" @click="newAdd">新建用户</el-button>
+        <el-button type="success" @click="newAdd">新建用户</el-button>
       </el-row>
       <div class="table-template-warp"> 
       <el-table :data="tableData.data" style="width: 100%">
@@ -681,39 +681,39 @@ let tableData: any = reactive({
       ex: '1',
       position: "基础岗位"
     },
-    {
-      id: 4,
-      name: '晓璐',
-      password: '12345678',
-      partment: '财务部',
-      status: '1',
-      roles: '普通员工',
-      phone: '15117960415',
-      ex: '1',
-      position: "基础岗位"
-    },
-    {
-      id: 5,
-      name: '王芳',
-      password: '12345678',
-      partment: '财务部',
-      status: '1',
-      roles: '普通员工',
-      phone: '15117960415',
-      ex: '1',
-      position: "基础岗位"
-    },
-    {
-      id: 6,
-      name: '李小冉',
-      password: '12345678',
-      partment: '财务部',
-      status: '1',
-      roles: '普通员工',
-      phone: '15117960415',
-      ex: '1',
-      position: "基础岗位"
-    },
+    // {
+    //   id: 4,
+    //   name: '晓璐',
+    //   password: '12345678',
+    //   partment: '财务部',
+    //   status: '1',
+    //   roles: '普通员工',
+    //   phone: '15117960415',
+    //   ex: '1',
+    //   position: "基础岗位"
+    // },
+    // {
+    //   id: 5,
+    //   name: '王芳',
+    //   password: '12345678',
+    //   partment: '财务部',
+    //   status: '1',
+    //   roles: '普通员工',
+    //   phone: '15117960415',
+    //   ex: '1',
+    //   position: "基础岗位"
+    // },
+    // {
+    //   id: 6,
+    //   name: '李小冉',
+    //   password: '12345678',
+    //   partment: '财务部',
+    //   status: '1',
+    //   roles: '普通员工',
+    //   phone: '15117960415',
+    //   ex: '1',
+    //   position: "基础岗位"
+    // },
   ]
 })
 </script>
@@ -721,7 +721,7 @@ let tableData: any = reactive({
 .top-button-warp {
   margin-bottom: 30px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   
 }
 

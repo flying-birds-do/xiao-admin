@@ -12,6 +12,30 @@ const router = createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
+			path: '/index',
+			component: layout,
+			meta: {
+				title: 'dashboard',
+				icon: 'dashboard',
+				affix: true,
+				hidden: true,
+				needMenu: true,
+			},
+			children: [
+				{
+					path: '/index',
+					component: () => import('../views/HomePage.vue'),
+					name: 'Index',
+					meta: {
+						title: '首页',
+						icon: 'dashboard',
+						affix: true,
+						hidden: true,
+					},
+				},
+			],
+		},
+		{
 			name: 'componetentDemo',
 			path: '/componetentDemo',
 			component: layout,
@@ -100,7 +124,6 @@ const router = createRouter({
 				// },
 			],
 		},
-
 		{
 			name: 'aboutFile',
 			path: '/aboutFile',
@@ -177,25 +200,7 @@ const router = createRouter({
 				},
 			],
 		},
-		{
-			path: '/',
-			component: layout,
-			redirect: '/system/user',
-			meta: { title: '首页', icon: 'dashboard', affix: true, hidden: false },
-			children: [
-				{
-					path: 'index',
-					component: () => import('../views/HomePage.vue'),
-					name: 'Index',
-					meta: {
-						title: '首页',
-						icon: 'dashboard',
-						affix: true,
-						hidden: false,
-					},
-				},
-			],
-		},
+
 		{
 			name: 'login',
 			path: '/login',
@@ -302,15 +307,15 @@ const router = createRouter({
 			},
 			children: [
 				// 使用手册
-				{
-					path: '/watchImage/analysis',
-					component: () => import('../views/analysis/index.vue'),
-					name: 'analysis',
-					meta: {
-						title: '大炫图表',
-						hidden: true,
-					},
-				},
+				// {
+				// 	path: '/watchImage/analysis',
+				// 	component: () => import('../views/analysis/index.vue'),
+				// 	name: 'analysis',
+				// 	meta: {
+				// 		title: '大炫图表',
+				// 		hidden: true,
+				// 	},
+				// },
 				{
 					path: '/watchImage/works',
 					component: () => import('../views/works/index.vue'),
