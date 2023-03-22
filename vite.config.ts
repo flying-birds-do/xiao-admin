@@ -7,7 +7,7 @@ import { resolve } from 'path'
 import Icons from 'unplugin-icons/vite'
 import viteCompression from 'vite-plugin-compression'
 import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
-import viteImagemin from 'vite-plugin-imagemin'
+// import viteImagemin from 'vite-plugin-imagemin'
 import { visualizer } from 'rollup-plugin-visualizer'
 // https://vitejs.dev/config/
 export default ({ mode }) =>
@@ -44,33 +44,33 @@ export default ({ mode }) =>
 				],
 			}),
 			// 图片压缩
-			viteImagemin({
-				gifsicle: {
-					optimizationLevel: 7,
-					interlaced: false,
-				},
-				optipng: {
-					optimizationLevel: 7,
-				},
-				mozjpeg: {
-					quality: 20,
-				},
-				pngquant: {
-					quality: [0.8, 0.9],
-					speed: 4,
-				},
-				svgo: {
-					plugins: [
-						{
-							name: 'removeViewBox',
-						},
-						{
-							name: 'removeEmptyAttrs',
-							active: false,
-						},
-					],
-				},
-			}),
+			// viteImagemin({
+			// 	gifsicle: {
+			// 		optimizationLevel: 7,
+			// 		interlaced: false,
+			// 	},
+			// 	optipng: {
+			// 		optimizationLevel: 7,
+			// 	},
+			// 	mozjpeg: {
+			// 		quality: 20,
+			// 	},
+			// 	pngquant: {
+			// 		quality: [0.8, 0.9],
+			// 		speed: 4,
+			// 	},
+			// 	svgo: {
+			// 		plugins: [
+			// 			{
+			// 				name: 'removeViewBox',
+			// 			},
+			// 			{
+			// 				name: 'removeEmptyAttrs',
+			// 				active: false,
+			// 			},
+			// 		],
+			// 	},
+			// }),
 			// 将 visualizer 插件放到最后
 			visualizer(),
 		],
