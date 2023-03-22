@@ -50,7 +50,7 @@ const resetSubmit = () => {
   margin-right: 12px;
 }
 
-:deep .el-form-item {
-  margin-right: 10px;
+.demo-form-inline :deep .el-form-item {
+  margin-right: 12px;
 }
 </style>

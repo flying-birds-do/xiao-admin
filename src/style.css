@@ -91,10 +91,9 @@ button:focus-visible {
 .pagination {
 	width: 100%;
 	display: flex;
-	justify-content: end;
-	position: absolute;
-	right: 20px;
-	bottom: 30px;
+	justify-content: start;
+	/* position: absolute;
+	bottom: 30px; */
 }
 html,
 body,

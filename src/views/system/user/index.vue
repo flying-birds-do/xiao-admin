@@ -10,7 +10,8 @@
         <el-button type="success" @click="newAdd">新建用户</el-button>
       </el-row>
       <div class="table-template-warp"> 
-      <el-table :data="tableData.data" style="width: 100%">
+      <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
+:header-cell-style="{ 'text-align': 'center' }">
         <el-table-column label="用户昵称" prop="name" />
         <el-table-column label="手机号码" prop="phone" width="120" />
         <el-table-column label="用户状态" prop="status">
@@ -36,9 +37,9 @@
       </el-table>
       </div>
       <div class="pagination" >
-      <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[100, 200, 300, 400]"
+      <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
         :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
-        :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+        :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </div>
       </div>
     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
@@ -104,7 +105,7 @@ const background = ref(false)
 const disabled = ref(false)
 const filterText = ref('')
 const currentPage4 = ref(4)
-const pageSize4 = ref(100)
+const pageSize4 = ref(5)
 const treeRef = ref<InstanceType<typeof ElTree>>()
 const defaultProps = {
   children: 'children',
@@ -747,7 +748,7 @@ let tableData: any = reactive({
 
 .pagination {
   text-align: right;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 </style>
 <!-- <style>

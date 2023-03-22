@@ -4,7 +4,7 @@
         <div class="header-left-warp">
            <img src="../assets/images/head-img.jpg" alt="头像" class="head-img">
             <p class="title">
-          Xiao-Admin系统
+          <!-- Xiao-Admin系统 -->
         </p>
         </div>
         <p class="quit" @click="quit">退出</p>

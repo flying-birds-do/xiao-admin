@@ -5,7 +5,8 @@
       <el-button type="success" @click="newAdd">新建</el-button>
     </el-row>
     <div class="table-template-warp">
-      <el-table :data="tableData.data" style="width: 100%">
+      <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
+:header-cell-style="{ 'text-align': 'center' }">
         <el-table-column label="商品id" prop="id" />
         <el-table-column label="仓库名称" prop="storeName" />
         <el-table-column label="商品图片">
@@ -13,12 +14,12 @@
             <img :src="scope.row?.img" alt="图片" width="100" height="50">
           </template>
         </el-table-column>
-        <el-table-column label="商品状态" prop="status">
+        <el-table-column label="商品状态" prop="status" >
           <template #default="scope">
             {{ scope.row?.status === '1' ? '出库中' : " 成功" }}
           </template>
         </el-table-column>
-        <el-table-column label="商品源" prop="origin" />
+        <el-table-column label="商品源" prop="origin" width="240"/>
         <el-table-column label="日期">
           <template #default="scope" v-model.n>
             <div style="display: flex; align-items: center">
@@ -39,9 +40,9 @@
       </el-table>
     </div>
    <div class="pagination" >
-    <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[100, 200, 300, 400]"
+    <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
       :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
-      :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
    </div>
       <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
       <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
@@ -147,7 +148,7 @@ const small = ref(false)
 const background = ref(false)
 const disabled = ref(false)
 const currentPage4 = ref(4)
-const pageSize4 = ref(100)
+const pageSize4 = ref(5)
 const handleCurrentChange = (val: number) => {
   for (let i = 0; i < val * 10; i++) {
     let name = remdomData('', 4)
@@ -888,7 +889,7 @@ let tableData: any = reactive({
 
 .pagination {
   text-align: right;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 </style>
 
