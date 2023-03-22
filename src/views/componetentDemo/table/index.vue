@@ -721,7 +721,7 @@ const sure = () => {
 }
 let tableData: any = reactive({
   data: [{
-    id: 1,
+    id: 11,
     storeId: 1,
     date: '2016-05-03',
     storeName: '王小虎12',
@@ -734,7 +734,7 @@ let tableData: any = reactive({
     img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
-    id: 1,
+    id: 3,
     storeId: 1,
     date: '2016-05-03',
     storeName: '王小虎12',
@@ -747,7 +747,7 @@ let tableData: any = reactive({
     img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
-    id: 1,
+    id: 4,
     storeId: 1,
     date: '2016-05-03',
     storeName: '王小虎12',
@@ -760,7 +760,7 @@ let tableData: any = reactive({
     img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
-    id: 1,
+    id: 5,
     storeId: 1,
     date: '2016-05-03',
     storeName: '王小虎12',

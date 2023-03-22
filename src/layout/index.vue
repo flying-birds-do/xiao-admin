@@ -2,9 +2,9 @@
   <div :class="classObj" class="app-wrapper">
       <div class="fixed-header">
         <div class="header-left-warp">
-           <img src="../assets/images/head-img.jpg" alt="头像" class="head-img">
-            <p class="title">
-          <!-- Xiao-Admin系统 -->
+           <!-- <img src="../assets/images/11.png" alt="头像" class="head-img"> -->
+            <p class="title-sytle">
+          Xiao-Admin
         </p>
         </div>
         <p class="quit" @click="quit">退出</p>
@@ -52,11 +52,11 @@ const quit = () => {
   p {
     line-height: 60px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 10px;
   }
   .head-img {
-    width: 60px;
-    height:60px;
+    width: 80px;
+    // height:40px;
   }
 }
 .sidebar-container {
@@ -81,5 +81,13 @@ const quit = () => {
 }
 .main-container {
   overflow: hidden;
+}
+.title-sytle {
+  background-image: linear-gradient(to right, #00C6FF, #b901af);
+  -webkit-background-clip: text; /* 背景被裁剪成文字的前景色 */
+-webkit-text-fill-color: transparent; /* 文字填充颜色变透明 */ 
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 34px;  
+font-weight: bolder;
 }
 </style>
