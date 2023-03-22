@@ -6,7 +6,7 @@
     </el-row>
     <div class="table-template-warp">
       <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
-:header-cell-style="{ 'text-align': 'center' }">
+        :header-cell-style="{ 'text-align': 'center' }">
         <el-table-column label="商品id" prop="id" />
         <el-table-column label="仓库名称" prop="storeName" />
         <el-table-column label="商品图片">

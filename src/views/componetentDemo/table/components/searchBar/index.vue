@@ -15,7 +15,7 @@
     <!-- <el-form-item label="创建时间">
       <el-date-picker v-model="formInline.date" type="date" placeholder="请选择创建时间" style="width: 100%" />
     </el-form-item> -->
-    <el-form-item>
+    <el-form-item class="mr10">
       <el-button type="primary" @click="onSubmit">查询</el-button>
       <el-button @click="resetSubmit">重置</el-button>
     </el-form-item>
@@ -52,5 +52,8 @@ const resetSubmit = () => {
 
 .demo-form-inline :deep .el-form-item {
   margin-right: 12px;
+}
+.top-button-warp .mr10 {
+  margin-right: 12px !important;
 }
 </style>
