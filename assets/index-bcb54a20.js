@@ -1,0 +1,1 @@
+import{J as s,d as t,o,q as _,t as a}from"./vue-4048d110.js";import{_ as c}from"./index-32971910.js";const n={class:"vue-full-warp"},r=["src"],d=s({__name:"index",setup(l){const e=t("https://vuex.vuejs.org/zh/");return(p,u)=>(o(),_("section",n,[a("iframe",{class:"wh-full",src:e.value},null,8,r)]))}});const m=c(d,[["__scopeId","data-v-d4a0d576"]]);export{m as default};
