@@ -1,0 +1,1 @@
+import{J as s,d as t,o as a,q as o,t as c}from"./vue-4048d110.js";import{_}from"./index-60ec5779.js";const n={class:"vue-full-warp"},r=["src"],d=s({__name:"index",setup(p){const e=t("https://pinia.web3doc.top/");return(l,i)=>(a(),o("section",n,[c("iframe",{class:"wh-full",src:e.value},null,8,r)]))}});const m=_(d,[["__scopeId","data-v-6fd1abca"]]);export{m as default};
