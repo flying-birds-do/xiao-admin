@@ -12,8 +12,9 @@ const router = createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
-			path: '/index',
+			path: '/',
 			component: layout,
+			redirect: '/',
 			meta: {
 				title: 'dashboard',
 				icon: 'dashboard',
@@ -23,7 +24,7 @@ const router = createRouter({
 			},
 			children: [
 				{
-					path: '/index',
+					path: '/',
 					component: () => import('../views/HomePage.vue'),
 					name: 'Index',
 					meta: {

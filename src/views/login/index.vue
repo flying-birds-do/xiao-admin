@@ -70,8 +70,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 }
 const toLogin = async (ruleForm: any) => {
   const data = await http.Login(ruleForm)
-  console.log(data)
-  console.log(2332)
 }
 
 </script>
