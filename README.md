@@ -1,3 +1,4 @@
+[![ppwfhee.png](https://s1.ax1x.com/2023/03/23/ppwfhee.png)](https://imgse.com/i/ppwfhee)
 # Xiao-Admin
 
 本项目旨在提供一个极简的后台管理系统开发脚手架，主要实现了后台管理系统常用的列表、数据的增删改查。非常容易上手，特别适合后端人员快速搭建后台管理系统。
@@ -15,6 +16,7 @@
 - vue-clipboard3
 
 本项目使用github action进行自动化部署。
+[![ppwf0Z4.png](https://s1.ax1x.com/2023/03/23/ppwf0Z4.png)](https://imgse.com/i/ppwf0Z4)
 
 ## 在线展示
 
