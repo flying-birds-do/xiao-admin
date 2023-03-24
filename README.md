@@ -1,35 +1,70 @@
+[![ppwhhcV.png](https://s1.ax1x.com/2023/03/23/ppwhhcV.png)](https://imgse.com/i/ppwhhcV)
 # Xiao-Admin
 
-本项目是基于node 18.14.1,使用vite创建的项目vue3 + ts + element-plus项目.使用pnpm进行包管理和安装.主要实现了后台管理系统常用的列表、数据的增删改查.
-关联了vue3相关的技术文档,如vite、ts、vue-router、vuex、pinia等,引入了echarts实现数据图表,使用vue3-video-play实现视频播放,对axios进行了二次封装.引入高德地图.使用v-md-editor实现富文本编辑器.使用vue-clipboard3实现复制功能等等.
+本项目旨在提供一个极简的后台管理系统开发脚手架，主要实现了后台管理系统常用的列表、数据的增删改查。非常容易上手，特别适合后端人员快速搭建后台管理系统。
 
-本项目使用github action进行自动化部署.
+## 本项目技术栈
+- node 18.14.1
+- vite+vue3 + ts + element-plus
+- pnpm
+- pinia
+- echarts
+- vue3-video-play实现视频播放
+- axios
+- 高德地图
+- v-md-editor
+- vue-clipboard3
+
+本项目使用github action进行自动化部署。
+[![ppwf0Z4.png](https://s1.ax1x.com/2023/03/23/ppwf0Z4.png)](https://imgse.com/i/ppwf0Z4)
 
 ## 在线展示
 
-本文档已部署到Github Pages，请点击[在线阅读](https://flying-birds-do.github.io/xiao-admin/)。
-## 作者github地址
+本文档已部署到Github Pages，请点击[案例演示](https://flying-birds-do.github.io/xiao-admin/)。
 
-```javascript
-https://github.com/flying-birds-do
-
-```
 ## 项目运行命令
 
-```javascript
-
+```shell
 git clone https://github.com/flying-birds-do/xiao-admin.git
-
-切到项目目录: cd  xiao-admin
-
-安装依赖: pnpm install || npm install || yarn
-
-运行: pnpm run dev || npm run  dev ||  yarn run dev
-
-打包: pnpm run build || npm run  build  ||  yarn run build 
-
-打包后预览: pnpm run preview || npm run  preview  ||  yarn run preview  
-
-本地预览端口号: http://localhost:4173/xiao-admin/
-
+```
+切到项目目录:
+```shell
+cd  xiao-admin
+```
+pnpm下的安装运行打包
+```shell
+#安装依赖
+pnpm install
+#开发环境运行
+pnpm run dev
+#打包
+pnpm run build
+#打包后预览
+pnpm run preview
+```
+npm下的安装运行打包
+```shell
+#安装依赖
+npm install
+#开发环境运行
+npm run dev
+#打包
+npm run build
+#打包后预览
+npm run preview
+```
+yarn下的安装运行打包
+```shell
+#安装依赖
+yarn
+#开发环境运行
+yarn run dev
+#打包
+yarn run build
+#打包后预览
+yarn run preview
+```
+本地预览链接：
+```
+http://localhost:4173/xiao-admin/
 ```
