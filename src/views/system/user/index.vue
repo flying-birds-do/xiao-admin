@@ -89,7 +89,7 @@
   </section>
 </template>
 <script lang="ts" setup>
-import xyDialog from '@/components/xDolog/index.vue'
+import xyDialog from '@/components/XDialog/index.vue'
 import SearchBar from './components/searchBar/index.vue'
 import { ref, reactive, watch } from 'vue'
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action, ElTree } from 'element-plus'

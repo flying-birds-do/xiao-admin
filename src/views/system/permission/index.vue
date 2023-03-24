@@ -55,7 +55,7 @@
   </section>
 </template>
 <script lang="ts" setup>
-import xyDialog from '@/components/xDolog/index.vue'
+import xyDialog from '@/components/XDialog/index.vue'
 import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
 import { tr } from 'element-plus/es/locale';

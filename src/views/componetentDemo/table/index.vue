@@ -14,19 +14,19 @@
             <img :src="scope.row?.img" alt="图片" width="100" height="50">
           </template>
         </el-table-column>
-        <el-table-column label="商品状态" prop="status" >
+        <el-table-column label="商品状态" prop="status">
           <template #default="scope">
             {{ scope.row?.status === '1' ? '出库中' : " 成功" }}
           </template>
         </el-table-column>
-        <el-table-column label="商品源" prop="origin" width="240"/>
+        <el-table-column label="商品源" prop="origin" width="240" />
         <el-table-column label="日期">
           <template #default="scope" v-model.n>
             <div style="display: flex; align-items: center;justify-content: center;">
               <el-icon>
                 <timer />
               </el-icon>
-              <span style="margin-left: 10px">{{ scope.row?.date }}</span>
+              <span style="margin-left: 10px">{{$filters.dateFliter(scope.row?.date,'YYYY/MM/DD') }}</span>
             </div>
           </template>
         </el-table-column>
@@ -39,12 +39,12 @@
         </el-table-column>
       </el-table>
     </div>
-   <div class="pagination" >
-    <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
-      :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
-      :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
-   </div>
-      <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
+    <div class="pagination">
+      <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
+        :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+        :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+    </div>
+    <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
       <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
         <el-form-item label="商品id" prop="name">
           <el-input v-model.number="ruleForm.id" placeholder="请输入商品id" />
@@ -70,16 +70,20 @@
   </section>
 </template>
 <script lang="ts" setup>
-import xyDialog from '@/components/xDolog/index.vue'
+import xyDialog from '@/components/XDialog/index.vue'
 import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
-import { tr } from 'element-plus/es/locale';
 import SearchBar from './components/searchBar/index.vue'
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
+import { getCurrentInstance } from 'vue'
+// const { proxy }: any = getCurrentInstance();
+const { dateFliter }: any = getCurrentInstance()?.appContext.config.globalProperties
+
 
 const dialogVisible = ref(false);
 const row = reactive({})
 const title = ref('编辑')
+
 interface User {
   id: number;
   storeId: number;
@@ -610,8 +614,8 @@ const onSubmit = (row: any) => {
           storeCount: 12,
           img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
         },
-    
-       
+
+
       ]
     }
   }
@@ -785,97 +789,97 @@ let tableData: any = reactive({
     storeCount: 12,
     img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
-  // {
-  //   id: 1,
-  //   storeId: 1,
-  //   date: '2016-05-03',
-  //   storeName: '王小虎12',
-  //   status: '出库中',
-  //   origin: '上海市普陀区金沙江路 1518 弄',
-  //   phone: '15117960415',
-  //   concat: '小鱼仔',
-  //   createTime: '2022-1-15',
-  //   storeCount: 12,
-  //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-  // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
+    // {
+    //   id: 1,
+    //   storeId: 1,
+    //   date: '2016-05-03',
+    //   storeName: '王小虎12',
+    //   status: '出库中',
+    //   origin: '上海市普陀区金沙江路 1518 弄',
+    //   phone: '15117960415',
+    //   concat: '小鱼仔',
+    //   createTime: '2022-1-15',
+    //   storeCount: 12,
+    //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    // },
   ]
 }
 )

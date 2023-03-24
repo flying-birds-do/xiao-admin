@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+const app = createApp(App)
 import router from './router/index'
 import * as echarts from 'echarts'
 import ElementPlus from 'element-plus'
@@ -10,28 +11,47 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import eventBus from 'vue3-print-nb' // 打印
 import vue3videoPlay from 'vue3-video-play' // 引入组件
 import 'vue3-video-play/dist/style.css' // 引入css
-import { cloneDeep } from 'lodash'
-const obj = cloneDeep({})
-// 视频插件
-// import VideoPlayer from 'vue-video-player/src'
-// import 'video.js/dist/video-js.css'
-// import 'vue-video-player/src/custom-theme.css'
-
+// 全局过滤器
+import installFilter from '@/utils/XFilter'
+// 自定义指令
+import GlobalDirective from '@/utils/XDirective' // 全局自定义指令
+// 全局弹框
+import Toast from '@/components/XToast'
 import store from './store'
 import VMdPreview from '@kangc/v-md-editor/lib/preview'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
+import * as filters from '@/utils/XFilter' // global filters
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 VMdPreview.use(vuepressTheme)
 
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-// import ElementPlus from 'element-plus'
-// import 'element-plus/dist/index.css'
-const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component)
 }
 app.config.globalProperties.$echarts = echarts
+// 注册全局方法过滤器
+installFilter(app)
+type Toast = {
+	show: <T>(str: string | number, time?: number) => void
+}
+type GlobalDirective = {
+	el: any
+	binding: any
+	vnode: any
+}
+// 编写自定义插件的声明文件，防止报错，声明后也会有智能提示
+declare module '@vue/runtime-core' {
+	export interface ComponentCustomProperties {
+		$toast: Toast
+		$filters: any
+	}
+}
+// 全局自定义指令
+for (const [key, item] of Object.entries(GlobalDirective)) {
+	app.directive(key, item)
+}
+
 app
 	.use(router)
 	.use(ElementPlus, {
@@ -41,4 +61,5 @@ app
 	.use(VMdPreview)
 	.use(vue3videoPlay)
 	.use(store)
+	.use(Toast)
 	.mount('#app')

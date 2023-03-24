@@ -343,6 +343,7 @@ export default defineComponent({
     const bsWrapper: any = ref<HTMLElement>()
     const chartDom: any = ref<HTMLElement>()
     const chartBroken: any = ref<HTMLElement>()
+
     // 柱状图
     const initeCharts = () => {
       bsWrapper.value = document.getElementById('myChart')

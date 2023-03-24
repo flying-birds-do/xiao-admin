@@ -34,6 +34,11 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    XDolog: typeof import('./src/components/xDolog/index.vue')['default']
+    XBreadCrumbs: typeof import('./src/components/XBreadCrumbs/index.vue')['default']
+    XDialog: typeof import('./src/components/XDialog/index.vue')['default']
+    XPagination: typeof import('./src/components/XPagination/index.vue')['default']
+    XSureDelete: typeof import('./src/components/XSureDelete/index.vue')['default']
+    XTable: typeof import('./src/components/XTable/index.vue')['default']
+    XToast: typeof import('./src/components/XToast/index.vue')['default']
   }
 }

@@ -54,7 +54,7 @@
 </template>
 <script lang="ts" setup>
 import SearchBar from './components/searchBar/index.vue'
-import xyDialog from '@/components/xDolog/index.vue'
+import xyDialog from '@/components/XDialog/index.vue'
 import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
 import { tr } from 'element-plus/es/locale';

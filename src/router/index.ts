@@ -74,6 +74,15 @@ const router = createRouter({
 						hidden: true,
 					},
 				},
+				{
+					path: '/componetentDemo/toast',
+					component: () => import('../views/componetentDemo/toast/index.vue'),
+					name: 'toast',
+					meta: {
+						title: 'toast',
+						hidden: true,
+					},
+				},
 			],
 		},
 		{
