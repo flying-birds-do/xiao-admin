@@ -44,3 +44,13 @@ declare interface Window {
 }
 
 declare module 'qs'
+
+declare module 'vue' {
+	export interface GlobalComponents {
+		Skeleton: typeof Skeleton
+		Carousel: typeof Carousel
+		More: typeof More
+		Bread: typeof Bread
+		BreadItem: typeof BreadItem
+	}
+}

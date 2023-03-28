@@ -74,6 +74,26 @@ const router = createRouter({
 						hidden: true,
 					},
 				},
+				// {
+				// 	path: '/componetentDemo/tableTemplate',
+				// 	component: () =>
+				// 		import('../views/componetentDemo/tableTemplate/index.vue'),
+				// 	name: 'tableTemplate',
+				// 	meta: {
+				// 		title: '基础无分页',
+				// 		hidden: true,
+				// 	},
+				// },
+				// {
+				// 	path: '/componetentDemo/tableOpenRow',
+				// 	component: () =>
+				// 		import('../views/componetentDemo/tableOpenRow/index.vue'),
+				// 	name: 'tableOpenRow',
+				// 	meta: {
+				// 		title: '表格展开行',
+				// 		hidden: true,
+				// 	},
+				// },
 				{
 					path: '/componetentDemo/toast',
 					component: () => import('../views/componetentDemo/toast/index.vue'),
@@ -112,6 +132,15 @@ const router = createRouter({
 					meta: {
 						title: '用户管理',
 						hidden: true,
+					},
+				},
+				{
+					path: '/system/user/detail',
+					component: () => import('../views/system/user/detail/index.vue'),
+					name: 'detail',
+					meta: {
+						title: '详情页面',
+						hidden: false,
 					},
 				},
 				// {

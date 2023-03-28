@@ -54,7 +54,6 @@ export default defineComponent({
     console.log(props.menuList)
     const secondMenuClick = (item:any) => {
       console.log(item)
-      console.log('9998')
     }
     return {
       secondMenuClick

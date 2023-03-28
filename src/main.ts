@@ -22,7 +22,6 @@ import VMdPreview from '@kangc/v-md-editor/lib/preview'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
-import * as filters from '@/utils/XFilter' // global filters
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 VMdPreview.use(vuepressTheme)
 
@@ -44,12 +43,7 @@ type GlobalDirective = {
 declare module '@vue/runtime-core' {
 	export interface ComponentCustomProperties {
 		$toast: Toast
-		$filters: any
 	}
-}
-// 全局自定义指令
-for (const [key, item] of Object.entries(GlobalDirective)) {
-	app.directive(key, item)
 }
 
 app

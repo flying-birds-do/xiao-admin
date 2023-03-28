@@ -6,42 +6,46 @@
     </div>
     <div class="right-warp">
       <el-row class="top-button-warp">
-      <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
+        <SearchBar @onSubmit="onSubmit" @resetSubmit="resetSubmit" ref="childComp"></SearchBar>
         <el-button type="success" @click="newAdd">新建用户</el-button>
       </el-row>
-      <div class="table-template-warp"> 
-      <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
-:header-cell-style="{ 'text-align': 'center' }">
-        <el-table-column label="用户昵称" prop="name" />
-        <el-table-column label="手机号码" prop="phone" width="120" />
-        <el-table-column label="用户状态" prop="status">
-          <template #default="scope">
-            {{ scope.row?.status === '1' ? '正常' : " 禁用" }}
-          </template>
-        </el-table-column>
-        <el-table-column label="归属部门" prop="partment" />
-        <el-table-column label="用户密码" prop="password" />
-        <el-table-column label="用户性别">
-          <template #default="scope">
-            {{ scope.row?.ex === '1' ? '男' : " 女" }}
-          </template>
-        </el-table-column>
-        <el-table-column label="岗位" prop="position" />
-        <el-table-column label="角色" prop="roles" />
-        <el-table-column label="操作" width="160">
-          <template #default="scope">
-            <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+      <div class="table-template-warp">
+        <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
+          :header-cell-style="{ 'text-align': 'center' }">
+          <el-table-column label="用户昵称" prop="name">
+            <template #default="scope">
+              <span @click="toUserDetail(scope.row)" class="curour"> {{ scope.row?.name }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="手机号码" prop="phone" width="120" />
+          <el-table-column label="用户状态" prop="status">
+            <template #default="scope">
+              {{ scope.row?.status === '1' ? '正常' : " 禁用" }}
+            </template>
+          </el-table-column>
+          <el-table-column label="归属部门" prop="partment" />
+          <el-table-column label="用户密码" prop="password" width="90" />
+          <el-table-column label="用户性别">
+            <template #default="scope">
+              {{ scope.row?.ex === '1' ? '男' : " 女" }}
+            </template>
+          </el-table-column>
+          <el-table-column label="岗位" prop="position" />
+          <el-table-column label="角色" prop="roles" width="100" />
+          <el-table-column label="操作" width="160">
+            <template #default="scope">
+              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
-      <div class="pagination" >
-      <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
-        :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
-        :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      <div class="pagination">
+        <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
+          :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+          :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      </div>
     </div>
-      </div>
     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
       <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" class="demo-ruleForm" status-icon>
         <el-form-item label="用户昵称" prop="name">
@@ -94,6 +98,7 @@ import SearchBar from './components/searchBar/index.vue'
 import { ref, reactive, watch } from 'vue'
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action, ElTree } from 'element-plus'
 import { useCounterStore } from '@/store/counter.js'
+import { useRouter } from 'vue-router'
 
 interface Tree {
   id: number
@@ -107,6 +112,7 @@ const filterText = ref('')
 const currentPage4 = ref(4)
 const pageSize4 = ref(5)
 const treeRef = ref<InstanceType<typeof ElTree>>()
+const Router = useRouter()
 const defaultProps = {
   children: 'children',
   label: 'label',
@@ -330,9 +336,9 @@ const onSubmit = (row: any) => {
           tableData.data.push(item)
           flag.value = true;
         }
-      }) 
+      })
       if (!flag.value) {
-         tableData.data = []
+        tableData.data = []
       }
     } else {
       tableData.data = [
@@ -422,11 +428,11 @@ const onSubmit = (row: any) => {
         if (item.roles.includes(row.roles)) {
           tableData.data = []
           tableData.data.push(item)
-           flag.value = true;
+          flag.value = true;
         }
       })
       if (!flag.value) {
-         tableData.data = []
+        tableData.data = []
       }
     } else {
       tableData.data = [
@@ -513,7 +519,9 @@ const onSubmit = (row: any) => {
 
 }
 const counter = useCounterStore()
-
+const toUserDetail = (row: any) => {
+  Router.push('/system/user/detail')
+}
 const dialogVisible = ref(false);
 const row = reactive({})
 const title = ref('编辑用户')
@@ -531,7 +539,7 @@ interface User {
 
 }
 const ruleFormRef = ref<FormInstance>()
-let ruleForm:any = ref({
+let ruleForm: any = ref({
   id: 1,
   name: '',
   phone: '',
@@ -539,7 +547,7 @@ let ruleForm:any = ref({
   ex: '',
   position: '',
   partment: '',
-  password:'',
+  password: '',
   roles: ''
 })
 // const rules = reactive<FormRules>({
@@ -723,7 +731,7 @@ let tableData: any = reactive({
   margin-bottom: 30px;
   display: flex;
   // justify-content: space-between;
-  
+
 }
 
 .user-warp {
@@ -750,7 +758,10 @@ let tableData: any = reactive({
   text-align: right;
   margin-top: 30px;
 }
-
+.curour {
+  cursor: pointer;
+  color: #409eff;
+}
 </style>
 <!-- <style>
 .user-warp .el-select {

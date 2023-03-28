@@ -6,7 +6,8 @@
     </el-row>
     <div class="table-template-warp">
       <el-table :data="tableData.data" style="width: 100%" :cell-style="{ textAlign: 'center' }"
-        :header-cell-style="{ 'text-align': 'center' }">
+        :header-cell-style="{ 'text-align': 'center' }"  @selection-change="handleSelectionChange">
+          <el-table-column type="selection" width="55" />
         <el-table-column label="商品id" prop="id" />
         <el-table-column label="仓库名称" prop="storeName" />
         <el-table-column label="商品图片">
@@ -74,7 +75,7 @@ import xyDialog from '@/components/XDialog/index.vue'
 import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
 import SearchBar from './components/searchBar/index.vue'
-import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
+import { ElMessage, ElMessageBox, FormInstance, FormRules, Action,ElTable } from 'element-plus'
 import { getCurrentInstance } from 'vue'
 // const { proxy }: any = getCurrentInstance();
 const { dateFliter }: any = getCurrentInstance()?.appContext.config.globalProperties
@@ -678,7 +679,13 @@ const rules = reactive<FormRules>({
     },
   ]
 })
-
+const multipleSelection = ref<User[]>([])
+const handleSelectionChange = (val: User[]) => {
+  multipleSelection.value = val
+  // for (let i = 0; i < val.length; i++) {
+  //  tableData.data = tableData.data.includes(val[i]) ? tableData.data.splice(tableData.data.indexOf(val[i]),1) :tableData.data
+  // }
+}
 const cancel = () => {
   ruleForm.value = {}
   dialogVisible.value = false
@@ -881,6 +888,8 @@ let tableData: any = reactive({
     //   img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
     // },
   ]
+
+  
 }
 )
 </script>

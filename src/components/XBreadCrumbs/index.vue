@@ -1,14 +1,29 @@
-<template>
-  <el-breadcrumb :separator-icon="ArrowRight">
-    <el-breadcrumb-item :to="{ path: item?.path}"  v-for="item in  navList" :key="item">homepage</el-breadcrumb-item>
-  </el-breadcrumb>
-</template>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="Bread">
 import { ArrowRight } from '@element-plus/icons-vue'
-import { defineProps } from 'vue'
-const props = defineProps({
-  navList: Array
+import { inject } from 'vue'
+defineProps({
+  to: {
+    type: String,
+  },
 })
-const navList = props.navList
+
+const BreadList = inject('BreadList')
+
+// 为底层组件提供数据
 </script>
+<template>
+  <div class="bread-crumbs">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="item.path" v-for="(item,index) in BreadList" :key="index">{{ item.title }}</el-breadcrumb-item>
+  </el-breadcrumb>
+  </div>
+</template>
+<style scoped lang="scss">
+.bread-crumbs {
+  text-align: left;
+  font-size: 20px;
+  .el-breadcrumb {
+
+  }
+}
+</style>

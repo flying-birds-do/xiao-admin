@@ -1,20 +1,3 @@
-// const onceClick = {
-// 	mounted(el, binding, vnode) {
-// 		el.addEventListener('click', () => {
-// 			if (!el.disabled) {
-// 				el.disabled = true
-// 				setTimeout(() => {
-// 					el.disabled = false
-// 				}, binding.value || 1000)
-// 			}
-// 		})
-// 	},
-// }
-// const GlobalDirective = {
-// 	onceClick,
-// }
-// export default GlobalDirective
-
 const loadingDirective = {
 	// 指令的定义
 	mounted(el) {

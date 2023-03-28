@@ -7,13 +7,20 @@
       :disabled="disabled"
       :background="background"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="props.total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, defineEmits,defineProps } from 'vue'
+const emit = defineEmits(['pageChange', 'currentChange'])
+const props = defineProps({
+  total: {
+    type: Number,
+    default:400
+  }
+})
 const currentPage = ref(4)
 const pageSize = ref(100)
 const small = ref(false)
@@ -22,9 +29,11 @@ const disabled = ref(false)
 
 const handleSizeChange = (val: number) => {
   console.log(`${val} items per page`)
+  emit('pageChange',val)
 }
 const handleCurrentChange = (val: number) => {
   console.log(`current page: ${val}`)
+   emit('currentChange',val)
 }
 </script>
 
