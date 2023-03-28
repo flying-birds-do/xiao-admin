@@ -41,7 +41,7 @@ const renderExpandContent = (row: User) =>
   ])
 const tableColumn: Table.Column[] = [
   // 使用render函数渲染展开行的内容
-  { type: 'expand', width: '50', render: ({ row }) => renderExpandContent(row) },
+  { type: 'expand', width: '50', render: ({ row }:any) => renderExpandContent(row) },
   // 使用expand插槽自定义展开行的内容。注意：如果使用展开行的插槽， slot名字必须是 ‘expand’。
   // { type: 'expand', width: '50', slot: 'expand' },
   { type: 'index', width: '50', label: 'No.' },
@@ -83,7 +83,6 @@ interface State {
   options: Table.Options
 }
 const state = reactive<State>({
-  tableDemoList: [],
   options: { showPagination: true, height: 600 }
 })
 

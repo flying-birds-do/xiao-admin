@@ -45,6 +45,10 @@ declare module '@vue/runtime-core' {
 		$toast: Toast
 	}
 }
+// 全局自定义指令
+// for (const [key, item] of Object.entries(GlobalDirective)) {
+// 	app.directive(key, item)
+// }
 
 app
 	.use(router)

@@ -7,7 +7,7 @@ defineProps({
   },
 })
 
-const BreadList = inject('BreadList')
+const BreadList:any = inject('BreadList')
 
 // 为底层组件提供数据
 </script>

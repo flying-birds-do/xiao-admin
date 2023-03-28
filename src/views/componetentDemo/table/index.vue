@@ -27,7 +27,7 @@
               <el-icon>
                 <timer />
               </el-icon>
-              <span style="margin-left: 10px">{{$filters.dateFliter(scope.row?.date,'YYYY/MM/DD') }}</span>
+              <span style="margin-left: 10px">{{scope.row?.date}}</span>
             </div>
           </template>
         </el-table-column>
