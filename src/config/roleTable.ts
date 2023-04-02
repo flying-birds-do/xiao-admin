@@ -1,12 +1,16 @@
 // 基本表格配置
 export const tableColumn: Table.Column[] = [
 	{ type: 'selection', width: '50' },
-	{ type: 'index', width: '50', label: 'No.' },
-	{ prop: 'name', label: '名字', sortable: true },
+	{ type: 'index', width: '60', label: '序号' },
+	{ prop: 'name', label: '角色名称', sortable: true },
 	{ type: 'date', prop: 'date', label: '日期' },
 	{
-		prop: 'address',
-		label: '地址',
+		prop: 'status',
+		label: '状态',
+	},
+	{
+		prop: 'adress',
+		label: '备注',
 		slot: 'address',
 		showOverflowTooltip: true,
 	},
@@ -14,8 +18,8 @@ export const tableColumn: Table.Column[] = [
 		width: '180',
 		label: '操作',
 		buttons: [
-			{ name: '编辑', type: 'primary', command: 'edit' },
-			{ name: '删除', type: 'danger', command: 'delete' },
+			{ name: 'edit', type: 'primary', command: 'edit' },
+			{ name: 'delete', type: 'danger', command: 'delete' },
 		],
 	},
 ]

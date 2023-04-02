@@ -13,7 +13,7 @@ const BreadList:any = inject('BreadList')
 </script>
 <template>
   <div class="bread-crumbs">
-    <el-breadcrumb separator="/">
+    <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item :to="item.path" v-for="(item,index) in BreadList" :key="index">{{ item.title }}</el-breadcrumb-item>
   </el-breadcrumb>
   </div>

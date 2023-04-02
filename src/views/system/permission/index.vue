@@ -3,7 +3,7 @@
     <el-row class="top-button-warp">
       <el-button type="primary" @click="newAdd">新建权限{{ counter.count }}</el-button>
     </el-row>
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="tableData" style="width: 100%" class="table-style-warp">
       <el-table-column label="商品id" prop="id" />
       <el-table-column label="仓库名称" prop="storeName" />
       <el-table-column label="商品状态" prop="status">
@@ -351,8 +351,8 @@ const tableData: any[] = reactive([
   width: 100%;
 }
 
-.el-form-item,
-.el-form-item__content {
+.table-style-warp .el-form-item,
+.table-style-warp .el-form-item__content {
   width: 100%;
 }
 </style>

@@ -14,7 +14,7 @@
       </template>
     
     <!-- 递归调用自身 -->
-      <MenuItem :menuList="item?.children" :index="item?.path"> </MenuItem>
+      <MenuItem :menuList="item?.children" :index="item?.path"></MenuItem>
     </el-sub-menu>
     <!-- 没有下级 -->
     <template  v-else>

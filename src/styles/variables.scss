@@ -1,0 +1,57 @@
+// sidebar
+$main:#FC1616;
+$menuBg: #ffffff;
+// $menuActive: linear-gradient(270deg, #c0c0c0 0%, #161618 100%);
+$menuActive: linear-gradient(to right, #00C6FF, #276bf4);
+$menuOnLeveltext:#fff;
+$menuTitleText:#33343D;
+$menuText: #73758F;
+
+// 顶部导航
+$menuOnLevelBg:#2F3442;
+$menuOnLevelHover:#242833;
+
+
+$sideBarWidth: 220px;
+$topBarHeight:56px;
+
+// 颜色
+$color-logobar:#2F3442;
+$color-blue:#4379F0;
+$color-primary: #FC1616;
+$color-success: #07C160;
+$color-warning: #FF8308;
+$color-danger: #F5222D;
+$color-info: #1890FF;
+$color-white: #ffffff;
+$color-text-regular: #6F7185;
+// 内外边距
+$spacing-extra-small: 4px;
+$spacing-small: 8px;
+$spacing-base: 15px;
+$spacing-medium: 20px;
+$spacing-large: 30px;
+$spacing-extra-large: 50px;
+
+// 字体大小
+$font-extra-small: 12px;
+$font-small: 13px;
+$font-base: 14px;
+$font-medium: 16px;
+$font-large: 18px;
+$font-extra-large: 20px;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  main:$main;
+  menuBg: $menuBg;
+  menuActive: $menuActive;
+  menuOnLeveltext:$menuOnLeveltext;
+  menuText: $menuText;
+  menuTitleText:$menuTitleText;
+  menuOnLevelBg:$menuOnLevelBg;
+  menuOnLevelHover:$menuOnLevelHover;
+  sideBarWidth: $sideBarWidth;
+  topBarHeight:$topBarHeight;
+}

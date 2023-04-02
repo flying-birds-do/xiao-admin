@@ -26,7 +26,7 @@ const routes = router.options.routes
 // 默认打开的菜单
 let activeNav:any = ref('')
 onMounted(() => {
-  activeNav.value =route.path 
+  activeNav.value =route.meta?.active
 })
 </script>
 <style scoped lang="scss">

@@ -1,0 +1,72 @@
+.search-wrap{
+  overflow: hidden;
+  padding: 20px 32px 4px 32px;
+  background-color: #fff;
+  .el-form-item{
+    margin-bottom: 16px;
+  }
+}
+.right-content{
+  padding: 16px 32px;
+  .btn-container {
+    padding: 0 0 16px;
+  }
+  .title{
+    font-weight: 500;
+    font-size: 16px;
+    color: #33343D;
+  }
+  .head-title{
+    height: 56px;
+    border-bottom: 1px solid #EBECF2;
+    line-height: 56px;
+    padding-left: 32px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #33343D;
+  }
+  .form-wrap{
+    padding-top: 56px;
+    margin: 0 auto;
+  }
+  .el-form-item{
+    word-break: break-word;
+    position: relative;
+    span{
+      word-break: normal;
+    }
+    .append{
+      position: absolute;
+      top: 0;
+      padding-left: 5px;
+    }
+  }
+  .btn-wrap{
+    padding-top: 16px;
+  }
+}
+// 表格中有 无 icon
+.dot{
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 8px;
+  &.green{
+    background: #07C160;
+  }
+  &.red{
+    background: #F5222D;
+  }
+}
+.grey-line{
+  width: 100%;
+  height: 12px;
+  background: #f2f3f7;
+}
+.store-tip{
+  text-align: center;
+  font-size: 16px;
+  line-height: 100px;
+}

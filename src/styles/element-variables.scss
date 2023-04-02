@@ -1,0 +1,149 @@
+/**
+ * 自由定制 element 主题色, 字体大小等
+ * 文档说明:
+ * https://element.eleme.cn/#/zh-CN/component/custom-theme
+ * 在线主题生成工具:
+ * https://element.eleme.cn/#/zh-CN/theme
+ */
+
+@import "variables";
+
+// 颜色
+$--color-primary: #FC1616; // 主题色
+$--color-success: #07C160;
+$--color-warning: #FF8308;
+$--color-danger: #F5222D;
+$--color-info: #909399;
+$--color-white: #fff;
+$--color-blue:#4379F0;
+$--border-color-base: #DADBE6;// 边框常规颜色
+$--color-disabled-fill:#F3F4F7;// 禁用颜色
+$--color-fill:#FAFAFA;
+$--color-disabled-checked-fill:#D8DCE6; // 选中禁用颜色
+$--color-disabled-font:#C0C2D1;// 禁用字体颜色
+/* Font-color
+-------------------------- */
+$--color-text-primary: #33343D !default;
+$--color-text-regular: #6F7185 !default;
+$--color-text-placeholder: #C0C2D1 !default;
+
+/* Checkbox
+-------------------------- */
+$--checkbox-font-color: $--color-text-regular !default;
+$--checkbox-input-height: 16px !default;
+$--checkbox-input-width: 16px !default;
+// 选中
+$--checkbox-checked-font-color: $--color-text-regular !default;
+$--checkbox-checked-input-border-color: $--color-blue !default;
+$--checkbox-checked-background-color: $--color-blue !default;
+$--checkbox-input-border-color-hover: $--color-blue !default;
+// 未选中-disabled
+$--checkbox-disabled-input-fill: $--color-disabled-fill !default;
+// 选中-disabled
+$--checkbox-disabled-checked-input-fill:$--color-disabled-checked-fill !default;
+$--checkbox-disabled-checked-icon-color: $--color-white !default;
+
+/* Radio
+-------------------------- */
+$--radio-font-color: $--color-text-regular !default;
+$--radio-input-height: 16px !default;
+$--radio-input-width: 16px !default;
+// 选中
+$--radio-checked-font-color: $--color-text-regular !default;
+$--radio-checked-input-border-color: $--color-blue !default;
+$--radio-checked-icon-color: $--color-white !default;
+$--radio-input-border-color-hover: $--color-blue !default;
+// 选中-disabled
+$--radio-disabled-checked-input-fill: $--color-white !default;
+$--radio-disabled-checked-icon-color: $--color-disabled-checked-fill !default;
+// 未选中-disabled
+$--radio-disabled-input-border-color: $--border-color-base !default;
+$--radio-disabled-input-fill: $--color-disabled-fill !default;
+
+/* Input
+-------------------------- */
+$--input-mini-height: 32px !default;
+$--input-mini-font-size: 14px !default;
+$--input-font-color: $--color-text-primary !default;
+// hover
+$--input-hover-border: $--color-blue !default;
+// focus
+$--input-focus-border: $--color-blue !default;
+// 禁用
+$--input-disabled-fill: $--color-disabled-fill !default;
+$--input-disabled-border: $--border-color-base !default;
+$--input-disabled-color:$--color-disabled-font!default;
+
+/* Button
+-------------------------- */
+$--button-border-radius: 4px; // 按钮
+$--button-mini-padding-vertical: 8px !default;
+$--button-mini-font-size: 14px !default;
+
+// type='danger'
+$--button-danger-border-color: $--color-primary !default;
+$--button-danger-font-color: $--color-primary !default;
+$--button-danger-background-color: $--color-white !default;
+
+/* Select
+-------------------------- */
+$--select-border-color-hover: $--color-blue !default;
+$--select-option-selected-font-color: $--color-blue !default;
+$--select-input-focus-border-color: $--color-blue !default;
+
+/* DatePicker
+--------------------------*/
+$--datepicker-active-color: $--color-blue !default;
+$--datepicker-hover-font-color: $--color-blue !default;
+
+/* Cascader
+-------------------------- */
+$--cascader-menu-selected-font-color: $--color-blue !default;
+
+/* Table
+-------------------------- */
+$--table-header-font-color: $--color-text-primary !default;
+$--table-font-color: $--color-text-regular !default;
+$--table-header-background-color: $--color-fill !default;
+$--table-row-hover-background-color: $--color-fill !default;
+$--table-border-color: #EBECF2 !default;
+
+/* Pagination
+-------------------------- */
+$--pagination-font-size: 14px !default;
+$--pagination-font-color: $--color-text-regular !default;
+$--pagination-button-height: 32px !default;
+$--pagination-hover-color: $--color-text-regular !default;
+
+/* MessageBox
+-------------------------- */
+
+/* Message
+-------------------------- */
+
+$--message-success-font-color: $--color-success !default;
+/// color||Color|0
+$--message-info-font-color:#1890FF !default;
+/// color||Color|0
+$--message-warning-font-color: $--color-warning !default;
+/// color||Color|0
+$--message-danger-font-color: $--color-danger !default;
+
+/* Alert
+-------------------------- */
+$--alert-title-font-size: 14px !default;
+$--alert-icon-size: 18px !default;
+
+/* Tab
+-------------------------- */
+
+/* icon font path, required */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+
+// @import "~element-ui/packages/theme-chalk/src/index";
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  theme: $--color-primary;
+}

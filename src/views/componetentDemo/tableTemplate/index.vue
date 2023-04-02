@@ -22,7 +22,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { tableColumn } from '@/config/table'
+import { tableColumn } from '@/config/roleTable'
 import { onMounted }  from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import type { SortParams } from '@/components/XTable/index.vue'

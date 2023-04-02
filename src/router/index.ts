@@ -21,6 +21,7 @@ const router = createRouter({
 				affix: true,
 				hidden: true,
 				needMenu: true,
+				active: '/',
 			},
 			children: [
 				{
@@ -32,6 +33,7 @@ const router = createRouter({
 						icon: 'dashboard',
 						affix: true,
 						hidden: true,
+						active: '/',
 					},
 				},
 			],
@@ -54,6 +56,7 @@ const router = createRouter({
 					meta: {
 						title: '按钮',
 						hidden: true,
+						active: '/componetentDemo/button',
 					},
 				},
 				{
@@ -63,6 +66,7 @@ const router = createRouter({
 					meta: {
 						title: '卡片',
 						hidden: true,
+						active: '/componetentDemo/card',
 					},
 				},
 				{
@@ -72,8 +76,10 @@ const router = createRouter({
 					meta: {
 						title: '表格',
 						hidden: true,
+						active: '/componetentDemo/table',
 					},
 				},
+
 				// {
 				// 	path: '/componetentDemo/tableTemplate',
 				// 	component: () =>
@@ -101,6 +107,7 @@ const router = createRouter({
 					meta: {
 						title: 'toast',
 						hidden: true,
+						active: '/componetentDemo/toast',
 					},
 				},
 			],
@@ -132,6 +139,7 @@ const router = createRouter({
 					meta: {
 						title: '用户管理',
 						hidden: true,
+						active: '/system/user',
 					},
 				},
 				{
@@ -141,26 +149,39 @@ const router = createRouter({
 					meta: {
 						title: '详情页面',
 						hidden: false,
+						active: '/system/user',
 					},
 				},
-				// {
-				// 	path: '/system/roles',
-				// 	component: () => import('../views/system/roles/index.vue'),
-				// 	name: 'roles',
-				// 	meta: {
-				// 		title: '角色管理',
-				// 		hidden: true,
-				// 	},
-				// },
-				// {
-				// 	path: '/system/router',
-				// 	component: () => import('../views/system/router/index.vue'),
-				// 	name: 'router',
-				// 	meta: {
-				// 		title: '路由管理',
-				// 		hidden: true,
-				// 	},
-				// },
+				{
+					path: '/system/roles',
+					component: () => import('../views/system/roles/index.vue'),
+					name: 'roles',
+					meta: {
+						title: '角色管理',
+						hidden: true,
+						active: '/system/roles',
+					},
+				},
+				{
+					path: '/system/router',
+					component: () => import('../views/system/router/index.vue'),
+					name: 'router',
+					meta: {
+						title: '路由管理',
+						hidden: true,
+						active: '/system/router',
+					},
+				},
+				{
+					path: '/componetentDemo/logs',
+					component: () => import('../views/system/logs/index.vue'),
+					name: 'logs',
+					meta: {
+						title: '日志',
+						hidden: true,
+						active: '/componetentDemo/logs',
+					},
+				},
 			],
 		},
 		{
@@ -171,6 +192,7 @@ const router = createRouter({
 				title: '相关文档',
 				icon: 'RefreshLeft',
 				hidden: true,
+				active: '/aboutFile',
 			},
 			children: [
 				// 使用手册
@@ -181,6 +203,7 @@ const router = createRouter({
 					meta: {
 						title: 'vue',
 						hidden: true,
+						active: '/aboutFile/vue',
 					},
 				},
 				{
@@ -190,6 +213,7 @@ const router = createRouter({
 					meta: {
 						title: 'vueRouter',
 						hidden: true,
+						active: '/aboutFile/vueRouter',
 					},
 				},
 				{
@@ -199,6 +223,7 @@ const router = createRouter({
 					meta: {
 						title: 'typeScript',
 						hidden: true,
+						active: '/aboutFile/typeScript',
 					},
 				},
 				{
@@ -208,6 +233,7 @@ const router = createRouter({
 					meta: {
 						title: 'vite',
 						hidden: true,
+						active: '/aboutFile/vite',
 					},
 				},
 				{
@@ -217,6 +243,7 @@ const router = createRouter({
 					meta: {
 						title: 'pinia',
 						hidden: true,
+						active: '/aboutFile/pinia',
 					},
 				},
 				{
@@ -226,6 +253,7 @@ const router = createRouter({
 					meta: {
 						title: 'vuex',
 						hidden: true,
+						active: '/aboutFile/vuex',
 					},
 				},
 				{
@@ -235,6 +263,7 @@ const router = createRouter({
 					meta: {
 						title: 'elementPlus',
 						hidden: true,
+						active: '/aboutFile/elementPlus',
 					},
 				},
 			],
@@ -246,6 +275,7 @@ const router = createRouter({
 			meta: {
 				title: '登陆页面',
 				hidden: false,
+				active: '/login',
 			},
 			component: () => import('../views/login/index.vue'),
 		},
@@ -258,6 +288,7 @@ const router = createRouter({
 				title: '插件示例',
 				icon: 'TurnOff',
 				hidden: true,
+				active: '/pluginDemo',
 			},
 			children: [
 				// 使用手册
@@ -268,6 +299,7 @@ const router = createRouter({
 					meta: {
 						title: '地图',
 						hidden: true,
+						active: '/pluginDemo/map',
 					},
 				},
 				{
@@ -277,6 +309,7 @@ const router = createRouter({
 					meta: {
 						title: '音频',
 						hidden: true,
+						active: '/pluginDemo/audio',
 					},
 				},
 				{
@@ -286,6 +319,7 @@ const router = createRouter({
 					meta: {
 						title: '视频',
 						hidden: true,
+						active: '/pluginDemo/video',
 					},
 				},
 				{
@@ -295,6 +329,7 @@ const router = createRouter({
 					meta: {
 						title: '打印',
 						hidden: true,
+						active: '/pluginDemo/print',
 					},
 				},
 				{
@@ -304,6 +339,7 @@ const router = createRouter({
 					meta: {
 						title: '图标',
 						hidden: true,
+						active: '/pluginDemo/icon',
 					},
 				},
 				{
@@ -313,6 +349,7 @@ const router = createRouter({
 					meta: {
 						title: '剪切板',
 						hidden: true,
+						active: '/pluginDemo/cut',
 					},
 				},
 				{
@@ -322,6 +359,7 @@ const router = createRouter({
 					meta: {
 						title: '富文本',
 						hidden: true,
+						active: '/pluginDemo/richText',
 					},
 				},
 				{
@@ -331,6 +369,7 @@ const router = createRouter({
 					meta: {
 						title: 'markdown',
 						hidden: true,
+						active: '/pluginDemo/markdown',
 					},
 				},
 			],
@@ -343,6 +382,7 @@ const router = createRouter({
 				title: '仪表盘',
 				icon: 'Unlock',
 				hidden: true,
+				active: '/watchImage',
 			},
 			children: [
 				// 使用手册
@@ -362,6 +402,7 @@ const router = createRouter({
 					meta: {
 						title: '工作中心',
 						hidden: true,
+						active: '/watchImage/works',
 					},
 				},
 			],
@@ -374,6 +415,7 @@ const router = createRouter({
 				icon: 'Avatar',
 				hidden: true,
 				needMenu: true,
+				active: '/pluginDemo',
 			},
 			component: layout,
 			children: [
@@ -385,6 +427,7 @@ const router = createRouter({
 					meta: {
 						title: '关于我们',
 						hidden: true,
+						active: '/about',
 					},
 				},
 			],

@@ -73,7 +73,7 @@ const quit = () => {
   // overflow: hidden;
   .main-container {
     flex: 1;
-    padding: 20px 20px 20px 240px;
+    padding: 20px 20px 20px 220px;
     overflow-y: auto;
    min-height: calc(100vh - 60px);
     //  overflow: hidden;

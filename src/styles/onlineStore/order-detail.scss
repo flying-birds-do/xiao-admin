@@ -1,0 +1,33 @@
+// 订单详情 店铺运营-（结账单详情、订单管理详情）
+.account-list{
+  border: 1px solid #EBECF2;
+  padding: 24px 0;
+  overflow: hidden;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content:space-between;
+  li{
+    width: 25%;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    &:first-child{
+      border-right: 1px solid #EBECF2;
+    }
+    p{
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+    }
+    .red{
+      color: #FC1616;
+    }
+    span{
+      font-size: 14px;
+      font-weight: 400;
+      color: #9496A8;
+      line-height: 20px;
+      padding-top: 8px;
+    }
+  }
+}

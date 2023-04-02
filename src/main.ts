@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
 import './style.css'
+import './styles/element-variables.scss'
+import './styles/index.scss'
+import './styles/storeinfo.scss'
 import App from './App.vue'
 const app = createApp(App)
 import router from './router/index'
@@ -13,6 +16,12 @@ import vue3videoPlay from 'vue3-video-play' // 引入组件
 import 'vue3-video-play/dist/style.css' // 引入css
 // 全局过滤器
 import installFilter from '@/utils/XFilter'
+import SearchBar from '@/components/SearchBar/index.vue'
+import TableTemplate from '@/components/XTable/index.vue'
+import PaginationTemplate from '@/components/PaginationTemplate/index.vue'
+import TableDialog from '@/components/TableDialog/index.vue'
+import SubmitDialog from '@/components/SubmitDialog/index.vue'
+import MultipDeleteTemplate from '@/components/MultipDeleteTemplate/index.vue'
 // 自定义指令
 import GlobalDirective from '@/utils/XDirective' // 全局自定义指令
 // 全局弹框
@@ -23,8 +32,9 @@ import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-VMdPreview.use(vuepressTheme)
+import emitter from '@/utils/bus'
 
+VMdPreview.use(vuepressTheme)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component)
 }
@@ -34,6 +44,7 @@ installFilter(app)
 type Toast = {
 	show: <T>(str: string | number, time?: number) => void
 }
+type mitt = any
 type GlobalDirective = {
 	el: any
 	binding: any
@@ -49,6 +60,13 @@ declare module '@vue/runtime-core' {
 // for (const [key, item] of Object.entries(GlobalDirective)) {
 // 	app.directive(key, item)
 // }
+app.config.globalProperties.$bus = emitter
+app.component('SearchBar', SearchBar)
+app.component('TableTemplate', TableTemplate)
+app.component('PaginationTemplate', PaginationTemplate)
+app.component('TableDialog', TableDialog)
+app.component('SubmitDialog', SubmitDialog)
+app.component('MultipDeleteTemplate', MultipDeleteTemplate)
 
 app
 	.use(router)

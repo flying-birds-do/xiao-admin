@@ -1,9 +1,18 @@
 <template>
  <section class="table-warp">
+  		<SearchBar
+			id="commodityInquiry1"
+			ref="conditions"
+			:search-conditions="searchList"
+			:is-query="true"
+			:is-reset="true"
+			:is-expand="true"
+			@screenChange="screenChange"
+		/>
     <el-row class="top-button-warp">
       <el-button type="primary" @click="newAdd">新建路由</el-button>
     </el-row>
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="tableData" style="width: 100%" class="table-style-warp">
       <el-table-column label="商品id" prop="id" />
       <el-table-column label="仓库名称" prop="storeName" />
       <el-table-column label="商品状态" prop="status">
@@ -61,7 +70,59 @@ import { ref, reactive } from 'vue'
 import { Timer } from '@element-plus/icons-vue'
 import { tr } from 'element-plus/es/locale';
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
-
+const searchList = [
+	{
+		label: '角色名称',
+		prop: 'rolesName',
+		type: 'retrievalSelect',
+		props: {
+			placeholder: '角色名称',
+		},
+		list: [],
+	},
+	{
+		label: '权限字符',
+		prop: 'rolesLimit',
+		type: 'input',
+		props: {
+			placeholder: '商品编号/商品名称',
+		},
+		list: [],
+	},
+	{
+		label: '状态',
+		prop: 'status',
+		type: 'select',
+		props: {
+			placeholder: '请选择',
+		},
+		list: [],
+	},
+	{
+		label: '创建时间',
+		prop: 'createDate',
+		type: 'datePicker',
+		props: {
+			placeholder: '请选择',
+		},
+		list: [],
+	},
+]
+const pagination = reactive({
+	pageNumber: 1,
+	totalCount: 0,
+	pageSize: 20,
+})
+// 将查询条件上移
+const screenChange = function (conditions) {
+	console.log(conditions)
+	// pagination = {
+	//   pageNumber: 1,
+	//   pageSize: 10,
+	//   totalCount: 0
+	// }
+	// searchValue = conditions
+}
 const dialogVisible = ref(false);
 const row = reactive({})
 const title = ref('编辑')
@@ -346,8 +407,8 @@ const tableData: any[] = reactive([
   width: 100%;
 }
 
-.el-form-item,
-.el-form-item__content {
+.table-style-warp .el-form-item,
+.table-style-warp .el-form-item__content {
   width: 100%;
 }
 </style>
