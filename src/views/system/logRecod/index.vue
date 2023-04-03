@@ -3,14 +3,14 @@
     <SearchBar id="commodityInquiry1" ref="conditions" :search-conditions="searchList" :is-query="true" :is-reset="true"
       :is-expand="false" @screenChange="screenChange" />
     <div class="table-pub-card">
-    <el-table :data="tableData" style="width: 100%" class="table-style-warp">
-       <el-table-column label="日志编号" prop="id" />
-      <el-table-column label="操作人员" prop="name" />
-      <el-table-column label="状态显示" prop="show"/>
-      <el-table-column label="时间" prop="date" />
-       <el-table-column label="操作地点" prop="place" />
-     
-    </el-table>
+      <el-table :data="tableData" style="width: 100%" class="table-style-warp">
+        <el-table-column label="日志编号" prop="id" />
+        <el-table-column label="操作人员" prop="name" />
+        <el-table-column label="状态显示" prop="show" />
+        <el-table-column label="时间" prop="date" />
+        <el-table-column label="操作地点" prop="place" />
+
+      </el-table>
     </div>
   </section>
 </template>
@@ -33,9 +33,9 @@ const searchList = ref([
     type: 'select',
     props: {
       placeholder: '状态',
-      list: [{label:'正常',value:"正常"},{label:'异常',value:"异常"}],
+      list: [{ label: '正常', value: "正常" }, { label: '异常', value: "异常" }],
     },
-    
+
   },
   {
     label: '时间',
@@ -48,51 +48,51 @@ const searchList = ref([
 const screenChange = function (conditions) {
   console.log(conditions)
   // searchValue = conditions
- tableData =  tableData.reverse()
+  tableData = tableData.reverse()
 }
 let tableData: any[] = reactive([
   {
-    id:'1',
+    id: '1',
     name: 'admin',
     path: '小鱼仔',
     show: '显示',
     date: '2023-04-03',
-    place:'北京',
+    place: '北京',
   },
   {
-     id:'1',
+    id: '1',
     name: '张三',
     show: '显示',
     date: '2023-01-13',
-    place:'上海',
+    place: '上海',
   },
   {
-      id:'1',
+    id: '2',
     name: '温昂',
     show: '显示',
     date: '2023-04-03',
-    place:'苏州',
+    place: '苏州',
   },
   {
-       id:'1',
+    id: '3',
     name: 'dashboard',
     show: '正常',
     date: '2023-04-03',
-    place:'北京',
+    place: '北京',
   },
-    {
-      id:'1',
+  {
+    id: '4',
     name: 'admin',
     show: '异常',
     date: '2023-04-03',
-    place:'北京',
+    place: '北京',
   },
-    {
-       id:'1',
+  {
+    id: '5',
     name: 'dsde',
     show: '显示',
     date: '2023-03-24',
-    place:'上海',
+    place: '上海',
   }
 
 ])
