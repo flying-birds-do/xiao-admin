@@ -173,9 +173,9 @@ const router = createRouter({
 					},
 				},
 				{
-					path: '/componetentDemo/logs',
-					component: () => import('../views/system/logs/index.vue'),
-					name: 'logs',
+					path: '/componetentDemo/logRecod',
+					component: () => import('../views/system/logRecod/index.vue'),
+					name: 'logRecod',
 					meta: {
 						title: '日志',
 						hidden: true,
