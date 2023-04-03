@@ -1,36 +1,18 @@
 <template>
- <section class="table-warp">
-  		<SearchBar
-			id="commodityInquiry1"
-			ref="conditions"
-			:search-conditions="searchList"
-			:is-query="true"
-			:is-reset="true"
-			:is-expand="true"
-			@screenChange="screenChange"
-		/>
+  <section class="table-warp">
+    <SearchBar id="commodityInquiry1" ref="conditions" :search-conditions="searchList" :is-query="true" :is-reset="true"
+      :is-expand="true" @screenChange="screenChange" />
     <el-row class="top-button-warp">
       <el-button type="primary" @click="newAdd">新建路由</el-button>
     </el-row>
+    <div class="table-pub-card">
     <el-table :data="tableData" style="width: 100%" class="table-style-warp">
-      <el-table-column label="商品id" prop="id" />
-      <el-table-column label="仓库名称" prop="storeName" />
-      <el-table-column label="商品状态" prop="status">
-        <template #default="scope">
-          {{ scope.row?.status === '1' ? '出库中' : " 成功" }}
-        </template>
+      <el-table-column label="路由名称" prop="name" />
+      <el-table-column label="是否显示" prop="show">
       </el-table-column>
-      <el-table-column label="商品源" prop="origin" />
-      <el-table-column label="日期">
-        <template #default="scope" v-model.n>
-          <div style="display: flex; align-items: center">
-            <el-icon>
-              <timer />
-            </el-icon>
-            <span style="margin-left: 10px">{{ scope.row?.date }}</span>
-          </div>
-        </template>
-      </el-table-column>
+      <el-table-column label="路由地址" prop="path" />
+       <el-table-column label="所属上级" prop="parent" />
+      <el-table-column label="高亮显示" prop="active" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -38,27 +20,35 @@
         </template>
       </el-table-column>
     </el-table>
-     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm"
-         status-icon>
-        <el-form-item label="商品id" prop="name">
-          <el-input v-model.number="ruleForm.id"  placeholder="请输入商品id"/>
+    </div>
+    <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
+      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="80px" class="demo-ruleForm" status-icon>
+        <el-form-item label="路由名称" prop="name">
+          <el-input v-model="ruleForm.name" placeholder="请输入路由名称" />
         </el-form-item>
-        <el-form-item label="仓库名称" prop="storeName">
-          <el-input v-model="ruleForm.storeName" placeholder="请输入仓库名称"/>
-        </el-form-item>
-        <el-form-item label="商品状态" prop="status">
-          <el-select v-model="ruleForm.status" placeholder="请选择商品状态">
-            <el-option label="出库中" value="1" />
-            <el-option label="成功" value="2" />
+        <el-form-item label="所属上级" prop="partment">
+          <el-select v-model="ruleForm.parent" placeholder="选择所属上级">
+            <el-option label="顶级" value="顶级" />
+            <el-option label="组件示例" value="组件示例" />
+            <el-option label="系统管理" value="系统管理" />
+            <el-option label="相关文档" value="相关文档" />
+            <el-option label="插件示例" value="插件示例" />
+            <el-option label="插件示例" value="插件示例" />
+            <el-option label="仪表盘" value="仪表盘" />
+            <el-option label="关于我们" value="关于我们" />
           </el-select>
         </el-form-item>
-        <el-form-item label="日期" required prop="date1">
-          <el-date-picker v-model="ruleForm.date" type="date" label="Pick a date" placeholder="请选择日期"
-            style="width: 100%" />
+        <el-form-item label="路由地址" prop="path">
+          <el-input v-model="ruleForm.path" placeholder="请输入路由地址" />
         </el-form-item>
-        <el-form-item label="商品源" prop="desc" >
-          <el-input v-model="ruleForm.origin" type="textarea"  placeholder="请输入商品源"/>
+        <el-form-item label="是否显示" prop="show">
+          <el-select v-model="ruleForm.show" placeholder="是否显示在左侧菜单">
+            <el-option label="是" value="1" />
+            <el-option label="否" value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="激活路由" prop="active">
+          <el-input v-model="ruleForm.active" placeholder="请输入激活路由地址" />
         </el-form-item>
       </el-form>
     </xyDialog>
@@ -67,128 +57,94 @@
 <script lang="ts" setup>
 import xyDialog from '@/components/XDialog/index.vue'
 import { ref, reactive } from 'vue'
-import { Timer } from '@element-plus/icons-vue'
-import { tr } from 'element-plus/es/locale';
 import { ElMessage, ElMessageBox, FormInstance, FormRules, Action } from 'element-plus'
-const searchList = [
-	{
-		label: '角色名称',
-		prop: 'rolesName',
-		type: 'retrievalSelect',
-		props: {
-			placeholder: '角色名称',
-		},
-		list: [],
-	},
-	{
-		label: '权限字符',
-		prop: 'rolesLimit',
-		type: 'input',
-		props: {
-			placeholder: '商品编号/商品名称',
-		},
-		list: [],
-	},
-	{
-		label: '状态',
-		prop: 'status',
-		type: 'select',
-		props: {
-			placeholder: '请选择',
-		},
-		list: [],
-	},
-	{
-		label: '创建时间',
-		prop: 'createDate',
-		type: 'datePicker',
-		props: {
-			placeholder: '请选择',
-		},
-		list: [],
-	},
-]
-const pagination = reactive({
-	pageNumber: 1,
-	totalCount: 0,
-	pageSize: 20,
-})
+const searchList = ref([
+  {
+    label: '路由名称',
+    prop: 'name',
+    type: 'input',
+    props: {
+      placeholder: '路由名称',
+    },
+    list: [],
+  },
+  {
+    label: '路由地址',
+    prop: 'path',
+    type: 'input',
+    props: {
+      placeholder: '路由地址',
+    },
+    list: [],
+  },
+  {
+    label: '是否显示',
+    prop: 'show',
+    type: 'select',
+    props: {
+      placeholder: '请选择',
+        list: [
+      { label: '是', value: '1' },
+       {label:'否',value:'2'}
+    ],
+    },
+  },
+  {
+    label: '激活路由',
+    prop: 'active',
+    type: 'input',
+    props: {
+      placeholder: '激活路由',
+    },
+    list: [],
+  },
+])
 // 将查询条件上移
 const screenChange = function (conditions) {
-	console.log(conditions)
-	// pagination = {
-	//   pageNumber: 1,
-	//   pageSize: 10,
-	//   totalCount: 0
-	// }
-	// searchValue = conditions
+  console.log(conditions)
+  // searchValue = conditions
+ tableData =  tableData.reverse()
 }
 const dialogVisible = ref(false);
 const row = reactive({})
 const title = ref('编辑')
 interface User {
-  id: number;
-  storeId: number;
-  storeName: string;
-  status: number;
-  origin: string;
-  phone: string;
-  concat: string;
-  date: string;
-  createTime: string;
-  storeCount: number;
+  name: string
+  path: string
+  show: string
+  active: string
+  parent:string
 
 }
 const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
-let ruleForm: any = reactive({
-  id: 1,
-  storeId: 2,
-  storeName: '',
-  status: '',
-  origin: '',
-  phone: '',
-  concat: '',
-  date: '',
-  createTime: '',
-  storeCount: ''
+let ruleForm: any = ref({
+  name: '',
+  path: '',
+  show: '',
+  active: '',
+  parent:''
 })
 
 const rules = reactive<FormRules>({
-  storeName: [
+  name: [
     { required: true, message: 'Please input Activity name', trigger: 'blur' },
   ],
-  status: [
+  show: [
     {
       required: true,
       message: 'Please select Activity zone',
       trigger: 'blur',
     },
   ],
-  origin: [
+  path: [
     {
       required: true,
       message: 'Please select Activity count',
       trigger: 'change',
     },
   ],
-  date: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a date',
-      trigger: 'change',
-    },
-  ],
-  phone: [
-    {
-      type: 'array',
-      required: true,
-      message: 'Please select at least one activity type',
-      trigger: 'change',
-    },
-  ],
-  concat: [
+  active: [
     {
       required: true,
       message: 'Please select activity resource',
@@ -198,14 +154,22 @@ const rules = reactive<FormRules>({
 })
 
 const cancel = () => {
-  ruleForm = {
-
+  ruleForm.value = {
+  name: '',
+  path: '',
+  show: '',
+  active: '',
+  parent:''
   }
   dialogVisible.value = false
 }
 const newAdd = () => {
-  ruleForm = {
-
+  ruleForm.value = {
+  name: '',
+  path: '',
+  show: '',
+  active: '',
+  parent:''
   }
   dialogVisible.value = true
   title.value = '新建'
@@ -213,8 +177,7 @@ const newAdd = () => {
 }
 const handleEdit = (index: number, row: User) => {
   dialogVisible.value = true
-  ruleForm = row
-
+  ruleForm.value = row
 }
 const handleDelete = (index: number, row: User) => {
   ElMessageBox.confirm(
@@ -243,158 +206,57 @@ const handleDelete = (index: number, row: User) => {
 }
 const sure = () => {
   dialogVisible.value = false
-  tableData.splice(0, 0, ruleForm)
+  tableData.splice(0, 0, ruleForm.value)
 }
-const tableData: any[] = reactive([
+let tableData: any[] = reactive([
   {
-    id: 1,
-    storeId: 1,
-    date: '2016-05-03',
-    storeName: '王小虎',
-    status: '1',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 12
+    name: 'dashboard',
+    path: '小鱼仔',
+    show: '显示',
+    active: '/stystem/roles',
+    parent:'顶级',
   },
   {
-    id: 1,
-    storeId: 2,
-    date: '2016-05-02',
-    storeName: '王小虎',
-    status: '2',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 13
+    name: '组件示例',
+    path: '小鱼仔',
+    show: '显示',
+    active: '/stystem/roles',
+      parent:'插件示例',
   },
   {
-    id: 2,
-    storeId: 3,
-    date: '2016-05-04',
-    storeName: '王小虎',
-    status: '3',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 2
+    name: '系统管理',
+    path: '小鱼仔',
+    show: '显示',
+    active: '/stystem/roles',
+      parent:'系统管理',
   },
   {
-    id: 2,
-    storeId: 4,
-    date: '2016-05-01',
-    storeName: '王小虎',
-    status: '4',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 5
+    name: '相关文档',
+    path: '小鱼仔',
+    show: '显示',
+    active: '/stystem/roles',
+      parent:'系统管理',
   },
-  {
-    id: 3,
-    storeId: 5,
-    date: '2016-05-08',
-    storeName: '王小虎',
-    status: '5',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
+    {
+    name: '插件示例',
+    path: '小鱼仔',
+    show: '显示',
+    active: '/stystem/roles',
+      parent:'系统管理',
   },
-  {
-    id: 4,
-    storeId: 6,
-    date: '2016-05-06',
-    storeName: '王小虎',
-    status: '6',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
+    {
+    name: '仪表盘',
+    path: '小鱼仔',
+    show: '隐藏',
+    active: '/stystem/roles',
+    parent:'系统管理',
   },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '7',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '7',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '2',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '7',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '7',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  },
-  {
-    id: 4,
-    storeId: 7,
-    date: '2016-05-07',
-    storeName: '王小虎',
-    status: '7',
-    origin: '上海市普陀区金沙江路 1518 弄',
-    phone: '15117960415',
-    concat: '小鱼仔',
-    createTime: '2022-1-15',
-    storeCount: 1
-  }
+
 ])
 </script>
 <style lang="scss" scoped>
 .top-button-warp {
-  margin-bottom: 30px;
+  margin-bottom: 14px;
 }
 </style>
 <style>

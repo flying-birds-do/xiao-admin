@@ -4,6 +4,8 @@ export const tableColumn: Table.Column[] = [
 	{ type: 'index', width: '60', label: '序号' },
 	{ prop: 'name', label: '角色名称', sortable: true },
 	{ type: 'date', prop: 'date', label: '日期' },
+	{ prop: 'rolesLimit', label: '权限字符' },
+
 	{
 		prop: 'status',
 		label: '状态',

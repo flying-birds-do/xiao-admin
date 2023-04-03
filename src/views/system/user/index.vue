@@ -39,12 +39,13 @@
             </template>
           </el-table-column>
         </el-table>
-      </div>
-      <div class="pagination">
+        <div class="pagination">
         <el-pagination v-model:current-page="currentPage4" v-model:page-size="pageSize4" :page-sizes="[5, 10, 20, 50]"
           :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
           :total="100" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
       </div>
+      </div>
+      
     </div>
     <xyDialog :dialogVisible="dialogVisible" @cancel="cancel" @sure="sure" :Tips="title">
       <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" class="demo-ruleForm" status-icon>
@@ -730,6 +731,8 @@ let tableData: any = reactive({
 .top-button-warp {
   margin-bottom: 30px;
   display: flex;
+  background: #fff;
+  padding:24px 24px 6px 24px ;
   // justify-content: space-between;
 
 }
@@ -742,6 +745,7 @@ let tableData: any = reactive({
     margin-right: 20px;
     padding: 10px;
     border: 1px solid #eaeaea;
+    background: #fff;
   }
 
   .right-warp {
@@ -761,6 +765,10 @@ let tableData: any = reactive({
 .curour {
   cursor: pointer;
   color: #409eff;
+}
+.table-template-warp {
+  background-color: #fff;
+  padding: 24px;
 }
 </style>
 <!-- <style>

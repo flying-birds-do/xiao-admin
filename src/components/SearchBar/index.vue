@@ -94,8 +94,7 @@
 								v-if="k.type === 'datePicker'"
 								v-model="conditions[k.prop]"
 								type="daterange"
-								value-format="yyyy-MM-dd"
-								format="yyyy-MM-dd"
+							
 								range-separator="-"
 								validate-event
 								start-placeholder="开始日期"
@@ -240,6 +239,12 @@
 
 :deep.el-input__inner {
 	width: 100%;
+  height: 32px;
+}
+.el-range-editor.el-input__wrapper {
+  display: inline-flex !important;
+  height: 32px !important;
+  line-height: 32px !important;
 }
 </style>
 <script>

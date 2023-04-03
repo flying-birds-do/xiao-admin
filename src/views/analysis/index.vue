@@ -6,7 +6,6 @@
     </div>
     <div id="broken" style="width: 100%;height:600px;">
     </div>
-
   </section>
 </template>
 <script lang="ts">
@@ -380,13 +379,21 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .analysis-warp {
+    background: red;
+
   >div {
     margin-bottom: 120px;
+    padding: 20px;
+    
   }
 
   .analysis-top-warp {
     display: flex;
     justify-content: space-between;
+    div {
+      background: #fff;
+    }
+    
   }
 
   .analysis-bottom-warp {

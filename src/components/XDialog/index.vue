@@ -36,7 +36,8 @@ const handleClose = (done: () => void) => {
 .dialog-footer button:first-child {
   margin-right: 10px;
 }
-/* .xy-dialog .el-select {
+
+.xy-dialog :deep.el-select {
   width: 100%;
 }
 
@@ -48,5 +49,5 @@ const handleClose = (done: () => void) => {
 .xy-dialog .el-form-item,
 .el-form-item__content {
   width: 100%;
-} */
+}
 </style>

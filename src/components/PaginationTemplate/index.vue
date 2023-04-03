@@ -22,7 +22,7 @@ export default {
       default: function() {
         return {
           pageNumber: 1,
-          totalCount: 0,
+          totalCount: 100,
           pageSize: 20
         }
       }
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      pageSize: [10, 20, 50, 100, 200]
+      pageSize: [5, 10, 20, 50, 100]
     }
   },
   methods: {
@@ -52,6 +52,19 @@ export default {
     text-align: right;
 }
 .table {
+//   ::v-deep .el-table-column--selection {
+//     .cell {
+//       padding-left: 10px !important;
+//     }
+//   }
+//   ::v-deep .el-table {
+//     td,
+//     th {
+//       &:first-child {
+//         padding-left: 14px !important;
+//       }
+//     }
+//   }
   .empty-wrap {
     padding: 80px 0;
     .empty-pic {
